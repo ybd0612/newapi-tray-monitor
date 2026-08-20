@@ -18,7 +18,7 @@
 
 ## 后续
 - 已确认提示实际来自旧版本卸载失败后的 `installUtil.nsh` 重试逻辑，而非单纯的 `CHECK_APP_RUNNING`。
-- 已增加 `customUnInstallCheck` 与 `customUnInstallCheckCurrentUser`，在旧卸载失败时结束目标进程并跳过默认重试弹窗。
-- 已生成最终安装包候选 `release-20260820-1722/NewAPI监控-Setup-1.0.0.exe`；构建命令仍因当前环境拦截 NSIS 中间文件清理而返回失败，但 `builder-debug.yml` 确认已包含 `build/installer.nsh`。
+- 改为在 `customInit` 阶段删除旧版本卸载注册表项，阻止 electron-builder 调用旧卸载器；安装完成后由新版本重新写入卸载信息。
+- 已生成最新安装包候选 `release-20260820-1732/NewAPI监控-Setup-1.0.0.exe`；构建命令仍因当前环境拦截 NSIS 中间文件清理而返回失败，但 `builder-debug.yml` 确认已包含 `build/installer.nsh`。
 - 需要用最终安装包进行一次真实安装验证。
 - 若要启用自动更新，还需继续完成 GitHub 仓库与 Release 发布。

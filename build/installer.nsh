@@ -8,16 +8,9 @@
   ; 安装初始化阶段结束旧实例，避免旧程序占用文件。
   nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
   Sleep 500
-!macroend
 
-; 旧版本卸载失败时，跳过 electron-builder 默认的重试弹窗。
-; 这是“NewAPI监控无法关闭”提示的实际来源。
-!macro customUnInstallCheck
-  nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
-  Sleep 500
-!macroend
-
-!macro customUnInstallCheckCurrentUser
-  nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
-  Sleep 500
+  ; 清理旧版本卸载注册表项，阻止 electron-builder 调用旧卸载器并弹出重试提示。
+  ; 新版本安装完成后会重新写入当前版本的卸载信息。
+  DeleteRegKey SHELL_CONTEXT "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${APP_ID}"
+  DeleteRegKey HKEY_CURRENT_USER "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${APP_ID}"
 !macroend
