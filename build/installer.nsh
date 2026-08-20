@@ -5,7 +5,19 @@
 !macroend
 
 !macro customInit
-  ; 再执行一次兜底关闭，处理安装器启动后才出现的残留进程。
+  ; 安装初始化阶段结束旧实例，避免旧程序占用文件。
   nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
-  Sleep 300
+  Sleep 500
+!macroend
+
+; 旧版本卸载失败时，跳过 electron-builder 默认的重试弹窗。
+; 这是“NewAPI监控无法关闭”提示的实际来源。
+!macro customUnInstallCheck
+  nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
+  Sleep 500
+!macroend
+
+!macro customUnInstallCheckCurrentUser
+  nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
+  Sleep 500
 !macroend

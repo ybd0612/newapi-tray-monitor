@@ -17,7 +17,8 @@
 - 构建器已生成新目录安装包 `release-20260820-1629/NewAPI监控-Setup-1.0.0.exe`；构建命令最终因当前环境的安全删除机制拦截 NSIS 中间文件清理而返回失败，但 `builder-debug.yml` 已确认脚本被纳入 NSIS 配置。安装包二进制未检测到明文 `taskkill`，因此仍需在真实安装流程中验证脚本执行效果。
 
 ## 后续
-- 已覆盖 electron-builder 的 `customCheckAppRunning` 钩子为空，完全跳过默认“无法关闭/重试”弹窗；`customInit` 仍负责安装初始化阶段结束旧实例。
-- 已生成最终安装包候选 `release-20260820-1705/NewAPI监控-Setup-1.0.0.exe`；构建命令仍因当前环境拦截 NSIS 中间文件清理而返回失败，但 `builder-debug.yml` 确认已包含 `build/installer.nsh`。
+- 已确认提示实际来自旧版本卸载失败后的 `installUtil.nsh` 重试逻辑，而非单纯的 `CHECK_APP_RUNNING`。
+- 已增加 `customUnInstallCheck` 与 `customUnInstallCheckCurrentUser`，在旧卸载失败时结束目标进程并跳过默认重试弹窗。
+- 已生成最终安装包候选 `release-20260820-1722/NewAPI监控-Setup-1.0.0.exe`；构建命令仍因当前环境拦截 NSIS 中间文件清理而返回失败，但 `builder-debug.yml` 确认已包含 `build/installer.nsh`。
 - 需要用最终安装包进行一次真实安装验证。
 - 若要启用自动更新，还需继续完成 GitHub 仓库与 Release 发布。
