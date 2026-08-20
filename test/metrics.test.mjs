@@ -38,9 +38,9 @@ check('toAmount(500000) 默认 factor=500000 -> 1', () => {
   assert(toAmount(500000) === 1, `期望 1，实际 ${toAmount(500000)}`);
 });
 
-check('toAmount(1234567, 500000) 四舍五入2位 -> 2.47', () => {
+check('toAmount(1234567, 500000) 保留4位 -> 2.4691', () => {
   const r = toAmount(1234567, 500000);
-  assert(r === 2.47, `期望 2.47，实际 ${r}`);
+  assert(r === 2.4691, `期望 2.4691，实际 ${r}`);
 });
 
 check('toAmount factor=1 边界 -> 整除', () => {
@@ -70,14 +70,14 @@ check('toAmount NaN/非数字兜底 -> 0', () => {
 check('parseUser 正常 data -> 正确取出 balance/usedAmount/requestCount', () => {
   const r = parseUser({ quota: 500000, used_quota: 1234567, request_count: 42 }, 500000);
   assert(r.balance === 1, `balance 期望 1，实际 ${r.balance}`);
-  assert(r.usedAmount === 2.47, `usedAmount 期望 2.47，实际 ${r.usedAmount}`);
+  assert(r.usedAmount === 2.4691, `usedAmount 期望 2.4691，实际 ${r.usedAmount}`);
   assert(r.requestCount === 42, `requestCount 期望 42，实际 ${r.requestCount}`);
 });
 
 check('parseUser 缺 quota -> balance 兜底为 0，不抛异常', () => {
   const r = parseUser({ used_quota: 100, request_count: 5 }, 500000);
   assert(r.balance === 0, `缺 quota 时 balance 应为 0，实际 ${r.balance}`);
-  assert(r.usedAmount === 0, `usedAmount 应为 0，实际 ${r.usedAmount}`);
+  assert(r.usedAmount === 0.0002, `usedAmount 应为 0.0002，实际 ${r.usedAmount}`);
   assert(r.requestCount === 5, `requestCount 应为 5，实际 ${r.requestCount}`);
 });
 

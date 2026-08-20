@@ -6,7 +6,7 @@
 import {
   fetchUser,
   fetchTodayStat,
-  fetchTodayTokens,
+  fetchPeriodData,
 } from '../src/main/api.js';
 
 let passed = 0;
@@ -101,48 +101,29 @@ await check('fetchTodayStat: /api/log/self/stat -> quota=250000', async () => {
   assert(calls[0].options.headers.Authorization === 'Bearer t', 'Authorization 头缺失');
 });
 
-// 5) fetchTodayTokens 2 页聚合
-await check('fetchTodayTokens: 2 页各含 token 字段 -> 聚合正确(43) 且 capped=false', async () => {
+// 5) fetchPeriodData 聚合接口返回的 token 与请求量
+await check('fetchPeriodData: data.items 汇总 token 与请求量', async () => {
   mockFetch((url) => {
-    const m = url.match(/[?&]page=(\d+)/);
-    const page = m ? Number(m[1]) : 1;
-    if (page === 1) return okJson({ success: true, total: 150, data: [
-      { prompt_tokens: 10, completion_tokens: 20 },
-      { prompt_tokens: 5, completion_tokens: 5 },
-    ] });
-    if (page === 2) return okJson({ success: true, total: 150, data: [
-      { prompt_tokens: 1, completion_tokens: 2 },
-    ] });
-    return okJson({ success: true, total: 150, data: [] });
+    assert(url.includes('/api/data/self'), `URL 错误: ${url}`);
+    assert(url.includes('start_timestamp=100') && url.includes('end_timestamp=200'), `查询参数错误: ${url}`);
+    return okJson({ success: true, data: { items: [
+      { token_used: 30, count: 2 },
+      { token_used: 5, count: 1 },
+    ] } });
   });
-  const r = await fetchTodayTokens('https://x.com', 't', 100, 200);
-  assert(r.tokens === 43, `聚合 token 期望 43，实际 ${r.tokens}`);
-  assert(r.capped === false, `2 页不应 capped，实际 ${r.capped}`);
-  assert(calls.length === 2, `应请求 2 页，实际 ${calls.length} 次`);
+  const r = await fetchPeriodData('https://x.com', 't', 100, 200);
+  assert(r.tokens === 35, `token 期望 35，实际 ${r.tokens}`);
+  assert(r.requests === 3, `请求量期望 3，实际 ${r.requests}`);
   assert(calls[0].options.headers.Authorization === 'Bearer t', 'Authorization 头缺失');
-  assert(calls[0].url.includes('page_size=100'), `分页大小参数缺失: ${calls[0].url}`);
 });
 
-// 6) fetchTodayTokens 超过硬上限 -> capped=true
-await check('fetchTodayTokens: 超过 50 页硬上限 -> capped=true 且 tokens 累加正确', async () => {
-  // 每页都返回非空且无 total 字段，触发无限翻页直到硬上限
-  mockFetch(() => okJson({ success: true, data: [{ prompt_tokens: 1, completion_tokens: 1 }] }));
-  const r = await fetchTodayTokens('https://x.com', 't', 100, 200);
-  assert(r.capped === true, `应标记为 capped=true，实际 ${r.capped}`);
-  // 50 页 * 单条(1+1=2) = 100
-  assert(r.tokens === 100, `tokens 期望 100，实际 ${r.tokens}`);
-  assert(calls.length === 50, `应精确请求 50 页（硬上限），实际 ${calls.length} 次`);
-});
-
-// 7) fetchTodayTokens 单页即结束（total 小）
-await check('fetchTodayTokens: total<=pageSize -> 仅 1 页且 capped=false', async () => {
-  mockFetch(() => okJson({ success: true, total: 3, data: [
-    { prompt_tokens: 2, completion_tokens: 3 },
+// 6) fetchPeriodData 支持 data 数组
+await check('fetchPeriodData: data 数组兼容解析', async () => {
+  mockFetch(() => okJson({ success: true, data: [
+    { token_used: 10, count: 4 },
   ] }));
-  const r = await fetchTodayTokens('https://x.com', 't', 100, 200);
-  assert(r.tokens === 5, `tokens 期望 5，实际 ${r.tokens}`);
-  assert(r.capped === false, `单页不应 capped，实际 ${r.capped}`);
-  assert(calls.length === 1, `应仅 1 页，实际 ${calls.length} 次`);
+  const r = await fetchPeriodData('https://x.com', 't', 100, 200);
+  assert(r.tokens === 10 && r.requests === 4, `汇总错误: ${JSON.stringify(r)}`);
 });
 
 console.log(`\n==== api 结果: ${passed} 通过 / ${failed} 失败 / 共 ${passed + failed} ====`);
