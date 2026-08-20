@@ -6,7 +6,9 @@ import { fileURLToPath } from 'url';
 
 const electronApi = electronMain.default || electronMain;
 const { app, BrowserWindow, Tray, Menu, screen, ipcMain, nativeImage, protocol } = electronApi;
-import { autoUpdater } from 'electron-updater';
+import electronUpdater from 'electron-updater';
+
+const { autoUpdater } = electronUpdater.default || electronUpdater;
 
 import { loadConfig, saveConfig, getDefaultConfig } from './config.js';
 import { fetchUser, fetchTodayStat, fetchPeriodData } from './api.js';
