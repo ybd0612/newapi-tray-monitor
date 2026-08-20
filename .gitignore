@@ -1,6 +1,7 @@
 node_modules/
 dist/
 release/
+release-*/
 debug.log
 config.json
 *.log
