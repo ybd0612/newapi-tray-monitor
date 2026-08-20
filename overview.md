@@ -17,8 +17,7 @@
 - 构建器已生成新目录安装包 `release-20260820-1629/NewAPI监控-Setup-1.0.0.exe`；构建命令最终因当前环境的安全删除机制拦截 NSIS 中间文件清理而返回失败，但 `builder-debug.yml` 已确认脚本被纳入 NSIS 配置。安装包二进制未检测到明文 `taskkill`，因此仍需在真实安装流程中验证脚本执行效果。
 
 ## 后续
-- 已确认当前提示来自 NSIS 解压覆盖阶段 `extractAppPackage.nsh` 的 `CopyFiles` 失败，而非旧卸载器。
-- 已将关闭进程逻辑增加到 `customFiles_x64`、`customFiles_ia32`、`customFiles_arm64`，在解压临时目录完成、开始覆盖目标目录前再次结束应用。
-- 已生成最新安装包候选 `release-20260820-1740/NewAPI监控-Setup-1.0.0.exe`；构建命令仍因当前环境拦截 NSIS 中间文件清理而返回失败，但 `builder-debug.yml` 确认已包含 `build/installer.nsh`。
-- 需要用最终安装包进行一次真实安装验证。
-- 若要启用自动更新，还需继续完成 GitHub 仓库与 Release 发布。
+- 用户确认任务管理器中没有 NewAPI 进程，但安装器仍误报，因此判断为 electron-builder NSIS 覆盖/解压阶段的统一错误提示，不再继续增加复杂钩子。
+- 已移除所有自定义 NSIS 进程关闭、卸载和注册表脚本，`package.json` 恢复标准 NSIS 配置。
+- 标准安装包候选：`release-standard-20260820-1742/NewAPI监控-Setup-1.0.0.exe`；构建器仍因当前环境拦截 NSIS 中间文件清理返回失败，但安装包文件已生成。
+- 后续如需彻底解决，只建议改用全新安装目录或更换安装技术，不再继续堆叠 NSIS 钩子。
