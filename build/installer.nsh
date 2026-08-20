@@ -8,9 +8,21 @@
   ; 安装初始化阶段结束旧实例，避免旧程序占用文件。
   nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
   Sleep 500
+!macroend
 
-  ; 清理旧版本卸载注册表项，阻止 electron-builder 调用旧卸载器并弹出重试提示。
-  ; 新版本安装完成后会重新写入当前版本的卸载信息。
-  DeleteRegKey SHELL_CONTEXT "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${APP_ID}"
-  DeleteRegKey HKEY_CURRENT_USER "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\${APP_ID}"
+; 解压到临时目录完成后、覆盖安装目录前再次结束进程。
+; NSIS 的默认占用检测发生在这个阶段，customInit 仍不够靠后。
+!macro customFiles_x64
+  nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
+  Sleep 1000
+!macroend
+
+!macro customFiles_ia32
+  nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
+  Sleep 1000
+!macroend
+
+!macro customFiles_arm64
+  nsExec::ExecToLog '%SYSTEMROOT%\\System32\\cmd.exe /c taskkill /F /T /IM "${APP_EXECUTABLE_FILENAME}"'
+  Sleep 1000
 !macroend
