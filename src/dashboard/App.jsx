@@ -1,0 +1,96 @@
+import React, { useEffect, useState } from 'react';
+import StatCard from './StatCard.jsx';
+
+// 数量格式化：保留千分位
+function formatInt(v) {
+  const num = Number(v);
+  if (!Number.isFinite(num)) return '--';
+  return num.toLocaleString('zh-CN');
+}
+
+// 金额格式化：保留 4 位小数
+function formatMoney(v) {
+  const num = Number(v);
+  if (!Number.isFinite(num)) return '--';
+  return num.toFixed(4);
+}
+
+// 大数量使用中文单位，统一保留 4 位小数
+function formatCompact(v) {
+  const num = Number(v);
+  if (!Number.isFinite(num)) return '--';
+  const abs = Math.abs(num);
+  const units = [
+    [100000000, '亿'],
+    [10000000, '千万'],
+    [1000000, '百万'],
+    [10000, '万'],
+  ];
+  const unit = units.find(([threshold]) => abs >= threshold);
+  return unit ? `${(num / unit[0]).toFixed(4)}${unit[1]}` : formatInt(num);
+}
+
+export default function App() {
+  const [metrics, setMetrics] = useState(null);
+  const [error, setError] = useState(null);
+  const [failureCount, setFailureCount] = useState(0);
+
+  useEffect(() => {
+    const api = window.api;
+    const onWheel = (event) => {
+      if (api && api.dashboardWheel) {
+        event.preventDefault();
+        api.dashboardWheel(event.deltaY);
+      }
+    };
+    window.addEventListener('wheel', onWheel, { passive: false });
+    console.log('[dashboard] api ready', Boolean(api), Object.keys(api || {}));
+    const handler = (payload) => {
+      if (payload && payload.ok) {
+        setMetrics(payload);
+        setFailureCount(0);
+        setError(null);
+      } else if (payload) {
+        // 单次失败忽略，连续超过 3 次才提示
+        setFailureCount((count) => {
+          const nextCount = count + 1;
+          if (nextCount > 3) setError(payload.error || '获取失败');
+          return nextCount;
+        });
+      }
+    };
+    if (api && api.onMetrics) api.onMetrics(handler);
+    if (api && api.dashboardReady) api.dashboardReady();
+    return () => window.removeEventListener('wheel', onWheel);
+  }, []);
+
+  const balance = metrics ? formatMoney(metrics.balance) : '--';
+  const todayAmount = metrics ? formatMoney(metrics.todayAmount) : '--';
+  const requestCount = metrics ? formatInt(metrics.requestCount) : '--';
+  const todayRequests = metrics ? formatInt(metrics.todayRequests) : '--';
+  const monthTokens = metrics ? formatCompact(metrics.monthTokens) : '--';
+  const todayTokens = metrics ? formatCompact(metrics.todayTokens) : '--';
+
+  return (
+    <div className="dashboard-root">
+      <div className="panel">
+        {error && <div className="error-bar">获取失败：{error}</div>}
+
+        <div className="metric-row metric-row-balance">
+          <StatCard label="余额" value={balance} />
+          <StatCard label="今日消费" value={todayAmount} />
+        </div>
+        <div className="metric-row">
+          <StatCard label="本月请求量" value={requestCount} />
+          <StatCard label="今日请求量" value={todayRequests} />
+        </div>
+        <div className="metric-row">
+          <StatCard label="本月Token" value={monthTokens} />
+          <StatCard label="今日Token" value={todayTokens} />
+        </div>
+
+        {metrics?.capped && <div className="cap-hint">今日 Token 已达分页上限</div>}
+      </div>
+    </div>
+  );
+}

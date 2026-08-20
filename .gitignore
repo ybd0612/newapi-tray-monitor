@@ -1,0 +1,9 @@
+node_modules/
+dist/
+release/
+debug.log
+config.json
+*.log
+*.tmp
+*.timestamp-*.mjs
+.DS_Store
