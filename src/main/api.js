@@ -15,18 +15,19 @@ export async function fetchPeriodData(baseUrl, token, startTimestamp, endTimesta
   for (let start = startTimestamp; start < endTimestamp; start += maxSpan) {
     ranges.push([start, Math.min(start + maxSpan, endTimestamp)]);
   }
-  const parts = await Promise.all(ranges.map(([start, end]) => fetchPeriodChunk(baseUrl, token, start, end, userId)));
+  const parts = await Promise.all(ranges.map(([start, end]) => fetchPeriodChunk(baseUrl, token, start, end, userId, defaultTime)));
   return parts.reduce((total, part) => ({
     tokens: total.tokens + part.tokens,
     requests: total.requests + part.requests,
   }), { tokens: 0, requests: 0 });
 }
 
-async function fetchPeriodChunk(baseUrl, token, startTimestamp, endTimestamp, userId) {
+async function fetchPeriodChunk(baseUrl, token, startTimestamp, endTimestamp, userId, defaultTime = 'day') {
   const base = normalizeBase(baseUrl);
-  const url = `${base}/api/data/self?start_timestamp=${startTimestamp}&end_timestamp=${endTimestamp}&default_time=day`;
+  const timeUnit = defaultTime || 'day';
+  const url = `${base}/api/data/self?start_timestamp=${startTimestamp}&end_timestamp=${endTimestamp}&default_time=${encodeURIComponent(timeUnit)}`;
   const res = await fetchWithTimeout(url, { headers: authHeaders(token, userId) });
-  if (!res.ok) throw new Error(`数据接口错误 ${res.status}`);
+  if (!res.ok) throw new Error(`数据接口错误 HTTP ${res.status}`);
   const json = await res.json();
   if (!json || json.success !== true) {
     throw new Error(`数据接口返回失败${json?.message ? `：${json.message}` : ''}`);
