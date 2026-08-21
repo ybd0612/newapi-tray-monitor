@@ -69,16 +69,16 @@ export default function App() {
       setPanelOpacity(next);
       tauriApi.setPanelOpacity(next);
     };
-    window.addEventListener('wheel', onWheel, { passive: false });
+    window.addEventListener('wheel', onWheel, { passive: false, capture: true });
     if (!api) {
-      tauriApi.getConfig().then(async (cfg) => {
-        const opacity = Number(cfg.panelOpacity) || 1;
+      // 先注册事件，再恢复状态，避免首次打开时错过移动/缩放事件。
+      tauriApi.onMoved(() => {}).then((unlisten) => { unlistenMoved = unlisten; });
+      tauriApi.onResized(() => {}).then((unlisten) => { unlistenResized = unlisten; });
+      tauriApi.getPanelPosition().then((state) => {
+        const opacity = Number(state?.opacity) || 1;
         panelOpacityRef.current = opacity;
         setPanelOpacity(opacity);
       });
-      tauriApi.getPanelPosition();
-      tauriApi.onMoved(() => {}).then((unlisten) => { unlistenMoved = unlisten; });
-      tauriApi.onResized(() => {}).then((unlisten) => { unlistenResized = unlisten; });
     }
     console.log('[dashboard] api ready', Boolean(api), Object.keys(api || {}));
     const handler = (payload) => {
@@ -98,7 +98,7 @@ export default function App() {
     if (api && api.onMetrics) api.onMetrics(handler);
     if (api && api.dashboardReady) api.dashboardReady();
     return () => {
-      window.removeEventListener('wheel', onWheel);
+      window.removeEventListener('wheel', onWheel, { capture: true });
       unlistenMoved?.();
       unlistenResized?.();
       dispose?.();
