@@ -45,6 +45,8 @@ export default function App() {
     let unlistenMoved = null;
     let unlistenResized = null;
     const api = window.api;
+    const onContextMenu = (event) => event.preventDefault();
+    window.addEventListener('contextmenu', onContextMenu, { capture: true });
     if (!api) {
       createTauriApi({
         onMetrics: (payload) => {
@@ -72,10 +74,10 @@ export default function App() {
     window.addEventListener('wheel', onWheel, { passive: false, capture: true });
     if (!api) {
       // 先注册事件，再恢复状态，避免首次打开时错过移动/缩放事件。
-      tauriApi.onMoved(() => {}).then((unlisten) => { unlistenMoved = unlisten; });
-      tauriApi.onResized(() => {}).then((unlisten) => { unlistenResized = unlisten; });
+      tauriApi.onMoved(() => { void tauriApi.saveWindowState(); }).then((unlisten) => { unlistenMoved = unlisten; });
+      tauriApi.onResized(() => { void tauriApi.saveWindowState(); }).then((unlisten) => { unlistenResized = unlisten; });
       tauriApi.getPanelPosition().then((state) => {
-        const opacity = Number(state?.opacity) || 1;
+        const opacity = Math.min(1, Math.max(0.35, Number(state?.opacity) || 1));
         panelOpacityRef.current = opacity;
         setPanelOpacity(opacity);
       });
@@ -99,6 +101,7 @@ export default function App() {
     if (api && api.dashboardReady) api.dashboardReady();
     return () => {
       window.removeEventListener('wheel', onWheel, { capture: true });
+      window.removeEventListener('contextmenu', onContextMenu, { capture: true });
       unlistenMoved?.();
       unlistenResized?.();
       tauriApi.saveWindowState();
@@ -114,7 +117,10 @@ export default function App() {
   const todayTokens = metrics ? formatCompact(metrics.todayTokens) : '--';
 
   const handleMouseDown = (event) => {
-    if (event.button === 0) tauriApi.startDragging();
+    if (event.button === 0) {
+      event.preventDefault();
+      void tauriApi.startDragging();
+    }
   };
 
   return (

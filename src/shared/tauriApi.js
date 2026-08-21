@@ -113,19 +113,21 @@ export const tauriApi = {
     }
     return { position: config.panelPosition, size: config.panelSize, opacity: config.panelOpacity };
   },
-  startDragging: () => appWindow.startDragging(),
-  onMoved: (handler) => appWindow.onMoved(({ payload }) => {
+  startDragging: async () => {
+    await appWindow.startDragging();
+  },
+  onMoved: (handler) => appWindow.onMoved(async ({ payload }) => {
     const position = { x: payload.x, y: payload.y };
     saveConfig({ ...loadConfig(), panelPosition: position });
     handler?.(position);
   }),
-  onResized: (handler) => appWindow.onResized(({ payload }) => {
+  onResized: (handler) => appWindow.onResized(async ({ payload }) => {
     const size = { width: payload.width, height: payload.height };
     saveConfig({ ...loadConfig(), panelSize: size });
     handler?.(size);
   }),
   saveWindowState: async () => {
-    const [position, size] = await Promise.all([appWindow.outerPosition(), appWindow.innerSize()]);
+    const [position, size] = await Promise.all([appWindow.outerPosition(), appWindow.outerSize()]);
     const state = {
       panelPosition: { x: position.x, y: position.y },
       panelSize: { width: size.width, height: size.height },
