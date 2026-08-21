@@ -11,6 +11,7 @@ import {
   Alert,
 } from '@mui/material';
 import { DEFAULT_CONFIG } from '../shared/constants.js';
+import { tauriApi } from '../shared/tauriApi.js';
 
 export default function App() {
   const [form, setForm] = useState({ ...DEFAULT_CONFIG });
@@ -21,7 +22,7 @@ export default function App() {
 
   // 启动时从主进程拉取已保存配置
   useEffect(() => {
-    const api = window.api;
+    const api = window.api || tauriApi;
     if (api && api.getConfig) {
       api
         .getConfig()
@@ -64,7 +65,8 @@ export default function App() {
     // 先更新界面，避免 IPC 或 Windows 注册表回写延迟造成“按钮点不动”的错觉。
     setAutoStart(enabled);
     try {
-      const actual = await window.api.setAutoStart(enabled);
+      const api = window.api || tauriApi;
+      const actual = await api.setAutoStart(enabled);
       setAutoStart(Boolean(actual));
       setErrorMsg('');
     } catch (e) {
@@ -82,11 +84,15 @@ export default function App() {
       currencySymbol: '',
     };
     try {
-      await window.api.saveConfig(payload);
+      const api = window.api || tauriApi;
+      await api.saveConfig(payload);
       setSaved(true);
       setErrorMsg('');
       // 主进程会发送 config-saved，这里兜底关闭窗口
-      setTimeout(() => window.close(), 400);
+      setTimeout(() => {
+        if (window.api) window.close();
+        else tauriApi.close();
+      }, 400);
     } catch (e) {
       // 明确暴露错误，避免“点击毫无反应”无从排查
       setErrorMsg('保存失败：' + (e && e.message ? e.message : '未知错误'));

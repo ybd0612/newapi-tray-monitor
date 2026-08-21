@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StatCard from './StatCard.jsx';
+import { createTauriApi } from '../shared/tauriApi.js';
 
 // 数量格式化：保留千分位
 function formatInt(v) {
@@ -34,7 +35,25 @@ export default function App() {
   const [failureCount, setFailureCount] = useState(0);
 
   useEffect(() => {
+    let dispose = null;
     const api = window.api;
+    if (!api) {
+      createTauriApi({
+        onMetrics: (payload) => {
+          if (payload?.ok) {
+            setMetrics(payload);
+            setFailureCount(0);
+            setError(null);
+          } else if (payload) {
+            setFailureCount((count) => {
+              const nextCount = count + 1;
+              if (nextCount > 3) setError(payload.error || '获取失败');
+              return nextCount;
+            });
+          }
+        },
+      }).then((controller) => { dispose = controller.dispose; });
+    }
     const onWheel = (event) => {
       if (api && api.dashboardWheel) {
         event.preventDefault();
@@ -59,7 +78,10 @@ export default function App() {
     };
     if (api && api.onMetrics) api.onMetrics(handler);
     if (api && api.dashboardReady) api.dashboardReady();
-    return () => window.removeEventListener('wheel', onWheel);
+    return () => {
+      window.removeEventListener('wheel', onWheel);
+      dispose?.();
+    };
   }, []);
 
   const balance = metrics ? formatMoney(metrics.balance) : '--';

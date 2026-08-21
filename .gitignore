@@ -2,6 +2,7 @@ node_modules/
 dist/
 release/
 release-*/
+src-tauri/target/
 debug.log
 config.json
 *.log
