@@ -21,11 +21,11 @@ body,
   -webkit-app-region: drag;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  padding: 4px;
+  align-items: stretch;
+  padding: 0;
   box-sizing: border-box;
   overflow: hidden;
-  border-radius: 26px;
+  border-radius: 22px;
   background: transparent !important;
   border: 0 !important;
   outline: 0 !important;
@@ -34,8 +34,9 @@ body,
 
 .panel {
   width: 100%;
-  max-width: 284px;
+  max-width: none;
   background: rgba(18, 22, 31, 0.94);
+  opacity: var(--panel-opacity, 1);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 22px;
   box-shadow: none;

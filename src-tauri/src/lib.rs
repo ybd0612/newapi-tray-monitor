@@ -40,7 +40,7 @@ pub fn run() {
             TrayIconBuilder::new()
                 .icon(tray_icon.ok_or_else(|| tauri::Error::AssetNotFound("icons/icon.ico".into()))?)
                 .menu(&menu)
-                .show_menu_on_left_click(true)
+                .show_menu_on_left_click(false)
                 .tooltip("NewAPI 监控")
                 .on_tray_icon_event(|tray, event| {
                     if let TrayIconEvent::Click {

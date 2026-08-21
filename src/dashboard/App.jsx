@@ -110,7 +110,7 @@ export default function App() {
   const todayTokens = metrics ? formatCompact(metrics.todayTokens) : '--';
 
   return (
-    <div className="dashboard-root" data-tauri-drag-region style={{ opacity: panelOpacity }}>
+    <div className="dashboard-root" data-tauri-drag-region style={{ '--panel-opacity': panelOpacity }}>
       <div className="panel">
         {error && <div className="error-bar">获取失败：{error}</div>}
 
