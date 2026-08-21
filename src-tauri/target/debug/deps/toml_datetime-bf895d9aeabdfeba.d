@@ -1,0 +1,10 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\toml_datetime-bf895d9aeabdfeba.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\datetime.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\de.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\ser.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libtoml_datetime-bf895d9aeabdfeba.rlib: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\datetime.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\de.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\ser.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libtoml_datetime-bf895d9aeabdfeba.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\datetime.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\de.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\ser.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\datetime.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\de.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\toml_datetime-0.7.5+spec-1.1.0\src\ser.rs:

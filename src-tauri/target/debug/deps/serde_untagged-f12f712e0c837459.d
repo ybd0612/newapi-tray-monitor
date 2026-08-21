@@ -1,0 +1,11 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\serde_untagged-f12f712e0c837459.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\any.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\error.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\int.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\map.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\seed.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\seq.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libserde_untagged-f12f712e0c837459.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\any.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\error.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\int.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\map.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\seed.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\seq.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\any.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\error.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\int.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\map.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\seed.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\serde-untagged-0.1.9\src\seq.rs:

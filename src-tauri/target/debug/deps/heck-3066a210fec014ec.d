@@ -1,0 +1,13 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\heck-3066a210fec014ec.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\kebab.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\lower_camel.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\shouty_kebab.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\shouty_snake.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\snake.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\title.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\train.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\upper_camel.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libheck-3066a210fec014ec.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\kebab.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\lower_camel.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\shouty_kebab.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\shouty_snake.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\snake.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\title.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\train.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\upper_camel.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\kebab.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\lower_camel.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\shouty_kebab.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\shouty_snake.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\snake.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\title.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\train.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\heck-0.5.0\src\upper_camel.rs:

@@ -1,0 +1,12 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\cookie-6ec0d17d0795e7c6.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\builder.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\parse.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\jar.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\delta.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\same_site.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\expiration.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\prefix.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libcookie-6ec0d17d0795e7c6.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\builder.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\parse.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\jar.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\delta.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\same_site.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\expiration.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\prefix.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\builder.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\parse.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\jar.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\delta.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\same_site.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\expiration.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\cookie-0.18.2\src\prefix.rs:

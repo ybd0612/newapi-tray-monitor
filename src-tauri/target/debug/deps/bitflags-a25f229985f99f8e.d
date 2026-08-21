@@ -1,0 +1,12 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\bitflags-a25f229985f99f8e.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\iter.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\parser.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\traits.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\public.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\internal.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\external.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\external\serde.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libbitflags-a25f229985f99f8e.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\iter.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\parser.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\traits.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\public.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\internal.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\external.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\external\serde.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\iter.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\parser.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\traits.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\public.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\internal.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\external.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\bitflags-2.13.1\src\external\serde.rs:

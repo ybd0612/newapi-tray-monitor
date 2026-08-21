@@ -1,0 +1,10 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\zerovec_derive-1091fa2d55176ab0.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\make_ule.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\make_varule.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\ule.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\utils.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\varule.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\zerovec_derive-1091fa2d55176ab0.dll: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\make_ule.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\make_varule.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\ule.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\utils.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\varule.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\make_ule.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\make_varule.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\ule.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\utils.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\zerovec-derive-0.11.6\src\varule.rs:

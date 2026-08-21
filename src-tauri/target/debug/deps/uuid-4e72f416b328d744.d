@@ -1,0 +1,14 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\uuid-4e72f416b328d744.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\macros.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\builder.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\error.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\non_nil.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\parser.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\fmt.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\timestamp.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\external.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\external\serde_support.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libuuid-4e72f416b328d744.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\macros.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\builder.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\error.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\non_nil.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\parser.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\fmt.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\timestamp.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\external.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\external\serde_support.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\macros.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\builder.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\error.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\non_nil.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\parser.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\fmt.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\timestamp.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\external.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\uuid-1.24.1\src\external\serde_support.rs:

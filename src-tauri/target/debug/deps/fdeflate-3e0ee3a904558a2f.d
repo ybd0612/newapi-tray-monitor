@@ -1,0 +1,11 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\fdeflate-3e0ee3a904558a2f.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\compress.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\decompress.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\huffman.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\tables.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libfdeflate-3e0ee3a904558a2f.rlib: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\compress.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\decompress.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\huffman.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\tables.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libfdeflate-3e0ee3a904558a2f.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\compress.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\decompress.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\huffman.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\tables.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\compress.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\decompress.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\huffman.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\fdeflate-0.3.7\src\tables.rs:

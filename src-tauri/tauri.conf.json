@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "NewAPI监控",
+  "version": "1.0.0",
+  "identifier": "com.ybondcoder.newapi-tray-monitor.tauri",
+  "build": {
+    "beforeDevCommand": "npm run build:tauri:dev",
+    "beforeBuildCommand": "npm run build:tauri",
+    "devUrl": "http://localhost:52317",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "NewAPI监控",
+        "width": 320,
+        "height": 220,
+        "resizable": false,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "visible": false
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "trayIcon": {
+      "iconPath": "icons/icon.ico",
+      "tooltip": "NewAPI监控",
+      "menuOnLeftClick": false
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "nsis",
+    "icon": ["icons/icon.ico"],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      }
+    }
+  }
+}

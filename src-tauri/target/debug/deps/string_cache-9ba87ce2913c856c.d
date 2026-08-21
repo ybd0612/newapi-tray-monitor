@@ -1,0 +1,11 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\string_cache-9ba87ce2913c856c.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\atom.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\dynamic_set.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\static_sets.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\trivial_impls.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libstring_cache-9ba87ce2913c856c.rlib: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\atom.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\dynamic_set.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\static_sets.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\trivial_impls.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libstring_cache-9ba87ce2913c856c.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\atom.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\dynamic_set.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\static_sets.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\trivial_impls.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\atom.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\dynamic_set.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\static_sets.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\string_cache-0.9.0\src\trivial_impls.rs:

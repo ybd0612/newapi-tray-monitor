@@ -1,0 +1,11 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\powerfmt-d1b4ae4f1304feb2.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\buf.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\ext.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\smart_display.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\smart_display_impls.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libpowerfmt-d1b4ae4f1304feb2.rlib: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\buf.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\ext.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\smart_display.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\smart_display_impls.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libpowerfmt-d1b4ae4f1304feb2.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\buf.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\ext.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\smart_display.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\smart_display_impls.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\buf.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\ext.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\smart_display.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\powerfmt-0.2.0\src\smart_display_impls.rs:

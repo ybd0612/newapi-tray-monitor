@@ -1,0 +1,9 @@
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\unicode_segmentation-f2ff6475fe360d86.d: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\grapheme.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\sentence.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\word.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\tables.rs
+
+C:\Users\ybd06\Documents\project\newapi-tray-monitor\src-tauri\target\debug\deps\libunicode_segmentation-f2ff6475fe360d86.rmeta: C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\lib.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\grapheme.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\sentence.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\word.rs C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\tables.rs
+
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\lib.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\grapheme.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\sentence.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\word.rs:
+C:\Users\ybd06\.cargo\registry\src\rsproxy.cn-e3de039b2554c837\unicode-segmentation-1.13.3\src\tables.rs:

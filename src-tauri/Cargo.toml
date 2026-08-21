@@ -1,0 +1,22 @@
+[package]
+name = "newapi-tray-monitor"
+version = "1.0.0"
+description = "NewAPI 余额与用量托盘监控"
+authors = ["ybd0612"]
+edition = "2021"
+
+[lib]
+name = "newapi_tray_monitor_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tauri = { version = "2", features = ["tray-icon"] }
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
