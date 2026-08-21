@@ -104,15 +104,25 @@ export const tauriApi = {
     return opacity;
   },
   getPanelPosition: async () => {
-    const position = loadConfig().panelPosition;
-    if (position) await appWindow.setPosition({ type: 'Physical', x: position.x, y: position.y });
-    return position;
+    const config = loadConfig();
+    if (config.panelPosition) {
+      await appWindow.setPosition({ type: 'Physical', x: config.panelPosition.x, y: config.panelPosition.y });
+    }
+    if (config.panelSize) {
+      await appWindow.setSize({ type: 'Physical', width: config.panelSize.width, height: config.panelSize.height });
+    }
+    return { position: config.panelPosition, size: config.panelSize, opacity: config.panelOpacity };
   },
   startDragging: () => appWindow.startDragging(),
   onMoved: (handler) => appWindow.onMoved(({ payload }) => {
     const position = { x: payload.x, y: payload.y };
     saveConfig({ ...loadConfig(), panelPosition: position });
     handler?.(position);
+  }),
+  onResized: (handler) => appWindow.onResized(({ payload }) => {
+    const size = { width: payload.width, height: payload.height };
+    saveConfig({ ...loadConfig(), panelSize: size });
+    handler?.(size);
   }),
   testConnection: async ({ baseUrl, token, userId }) => {
     try {

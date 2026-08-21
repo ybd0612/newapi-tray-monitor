@@ -24,6 +24,7 @@ export const DEFAULT_CONFIG = {
   factor: 500000, // 换算因子：额度单位 / factor = 金额
   userId: '', // 数字用户 ID（New-Api-User 头）；factory.pub 等强制要求，留空兼容普通 NewAPI
   panelPosition: null, // 面板上次拖拽后的位置 { x, y }
+  panelSize: null, // 面板上次调整后的大小 { width, height }
   panelOpacity: 1, // 面板透明度，范围 0.35 到 1
   autoStart: false, // 是否随 Windows 登录自动启动
 };

@@ -43,6 +43,7 @@ export default function App() {
   useEffect(() => {
     let dispose = null;
     let unlistenMoved = null;
+    let unlistenResized = null;
     const api = window.api;
     if (!api) {
       createTauriApi({
@@ -77,6 +78,7 @@ export default function App() {
       });
       tauriApi.getPanelPosition();
       tauriApi.onMoved(() => {}).then((unlisten) => { unlistenMoved = unlisten; });
+      tauriApi.onResized(() => {}).then((unlisten) => { unlistenResized = unlisten; });
     }
     console.log('[dashboard] api ready', Boolean(api), Object.keys(api || {}));
     const handler = (payload) => {
@@ -98,6 +100,7 @@ export default function App() {
     return () => {
       window.removeEventListener('wheel', onWheel);
       unlistenMoved?.();
+      unlistenResized?.();
       dispose?.();
     };
   }, []);

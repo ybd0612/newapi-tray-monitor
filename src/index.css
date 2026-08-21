@@ -25,8 +25,10 @@ body,
   padding: 0;
   box-sizing: border-box;
   overflow: hidden;
+  overflow: clip;
   border-radius: 22px;
   background: transparent !important;
+  opacity: var(--panel-opacity, 1);
   border: 0 !important;
   outline: 0 !important;
   box-shadow: none !important;
@@ -35,8 +37,7 @@ body,
 .panel {
   width: 100%;
   max-width: none;
-  background: rgba(18, 22, 31, 0.94);
-  opacity: var(--panel-opacity, 1);
+  background: rgba(18, 22, 31, calc(0.94 * var(--panel-opacity, 1)));
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 22px;
   box-shadow: none;
@@ -45,6 +46,7 @@ body,
   color: #ffffff;
   box-sizing: border-box;
   overflow: hidden;
+  overflow: clip;
   -webkit-app-region: drag;
 }
 
