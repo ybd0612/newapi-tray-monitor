@@ -101,6 +101,7 @@ export default function App() {
       window.removeEventListener('wheel', onWheel, { capture: true });
       unlistenMoved?.();
       unlistenResized?.();
+      tauriApi.saveWindowState();
       dispose?.();
     };
   }, []);
@@ -112,8 +113,12 @@ export default function App() {
   const monthTokens = metrics ? formatCompact(metrics.monthTokens) : '--';
   const todayTokens = metrics ? formatCompact(metrics.todayTokens) : '--';
 
+  const handleMouseDown = (event) => {
+    if (event.button === 0) tauriApi.startDragging();
+  };
+
   return (
-    <div className="dashboard-root" data-tauri-drag-region style={{ '--panel-opacity': panelOpacity }}>
+    <div className="dashboard-root" onMouseDown={handleMouseDown} style={{ '--panel-opacity': panelOpacity }}>
       <div className="panel">
         {error && <div className="error-bar">获取失败：{error}</div>}
 

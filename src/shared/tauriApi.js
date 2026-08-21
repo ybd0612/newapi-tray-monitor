@@ -124,6 +124,15 @@ export const tauriApi = {
     saveConfig({ ...loadConfig(), panelSize: size });
     handler?.(size);
   }),
+  saveWindowState: async () => {
+    const [position, size] = await Promise.all([appWindow.outerPosition(), appWindow.innerSize()]);
+    const state = {
+      panelPosition: { x: position.x, y: position.y },
+      panelSize: { width: size.width, height: size.height },
+    };
+    saveConfig({ ...loadConfig(), ...state });
+    return state;
+  },
   testConnection: async ({ baseUrl, token, userId }) => {
     try {
       const data = await fetchUser(baseUrl, token, userId);
