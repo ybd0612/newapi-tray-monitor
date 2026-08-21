@@ -62,19 +62,19 @@ export default function App() {
       }).then((controller) => { dispose = controller.dispose; });
     }
     const onWheel = (event) => {
-      if (api && api.dashboardWheel) {
-        event.preventDefault();
-        api.dashboardWheel(event.deltaY);
-      } else if (!api) {
-        event.preventDefault();
-        const next = Math.min(1, Math.max(0.35, panelOpacityRef.current + (event.deltaY < 0 ? 0.05 : -0.05)));
-        setPanelOpacity(next);
-        tauriApi.setPanelOpacity(next);
-      }
+      event.preventDefault();
+      const next = Math.min(1, Math.max(0.35, panelOpacityRef.current + (event.deltaY < 0 ? 0.05 : -0.05)));
+      panelOpacityRef.current = next;
+      setPanelOpacity(next);
+      tauriApi.setPanelOpacity(next);
     };
     window.addEventListener('wheel', onWheel, { passive: false });
     if (!api) {
-      tauriApi.getConfig().then((cfg) => setPanelOpacity(Number(cfg.panelOpacity) || 1));
+      tauriApi.getConfig().then(async (cfg) => {
+        const opacity = Number(cfg.panelOpacity) || 1;
+        panelOpacityRef.current = opacity;
+        setPanelOpacity(opacity);
+      });
       tauriApi.getPanelPosition();
       tauriApi.onMoved(() => {}).then((unlisten) => { unlistenMoved = unlisten; });
     }
@@ -110,7 +110,7 @@ export default function App() {
   const todayTokens = metrics ? formatCompact(metrics.todayTokens) : '--';
 
   return (
-    <div className="dashboard-root" data-tauri-drag-region style={!window.api ? { opacity: panelOpacity } : undefined}>
+    <div className="dashboard-root" data-tauri-drag-region style={{ opacity: panelOpacity }}>
       <div className="panel">
         {error && <div className="error-bar">获取失败：{error}</div>}
 
