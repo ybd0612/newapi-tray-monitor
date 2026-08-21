@@ -46,7 +46,7 @@ export default function App() {
   const handleTest = async () => {
     setTestResult(null);
     try {
-      const api = window.api || tauriApi;
+      const api = typeof window.api?.testConnection === 'function' ? window.api : tauriApi;
       const res = await api.testConnection({
         baseUrl: form.baseUrl,
         token: form.token,
@@ -85,13 +85,13 @@ export default function App() {
       currencySymbol: '',
     };
     try {
-      const api = window.api || tauriApi;
+      const api = typeof window.api?.saveConfig === 'function' ? window.api : tauriApi;
       await api.saveConfig(payload);
       setSaved(true);
       setErrorMsg('');
       // 主进程会发送 config-saved，这里兜底关闭窗口
       setTimeout(() => {
-        if (window.api) window.close();
+        if (typeof window.api?.saveConfig === 'function') window.close();
         else tauriApi.close();
       }, 400);
     } catch (e) {
