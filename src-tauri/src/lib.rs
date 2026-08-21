@@ -1,6 +1,6 @@
 use tauri::{
     menu::{MenuBuilder, MenuItemBuilder, PredefinedMenuItem},
-    tray::TrayIconBuilder,
+    tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
     Manager, WebviewUrl, WebviewWindowBuilder,
 };
 
@@ -35,9 +35,22 @@ pub fn run() {
                 .items(&[&show, &settings, &hide, &PredefinedMenuItem::separator(app)?, &quit])
                 .build()?;
 
+            let tray_icon = app.default_window_icon().cloned();
             TrayIconBuilder::new()
+                .icon(tray_icon.ok_or_else(|| tauri::Error::AssetNotFound("icons/icon.ico".into()))?)
                 .menu(&menu)
+                .show_menu_on_left_click(true)
                 .tooltip("NewAPI 监控")
+                .on_tray_icon_event(|tray, event| {
+                    if let TrayIconEvent::Click {
+                        button: MouseButton::Left,
+                        button_state: MouseButtonState::Up,
+                        ..
+                    } = event
+                    {
+                        show_window(tray.app_handle(), "main");
+                    }
+                })
                 .on_menu_event(|app, event| match event.id.as_ref() {
                     "show" => show_window(app, "main"),
                     "hide" => {
