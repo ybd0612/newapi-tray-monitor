@@ -46,7 +46,8 @@ export default function App() {
   const handleTest = async () => {
     setTestResult(null);
     try {
-      const res = await window.api.testConnection({
+      const api = window.api || tauriApi;
+      const res = await api.testConnection({
         baseUrl: form.baseUrl,
         token: form.token,
         userId: form.userId,

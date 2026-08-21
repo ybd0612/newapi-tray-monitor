@@ -26,6 +26,9 @@ body,
   box-sizing: border-box;
   overflow: hidden;
   border-radius: 26px;
+  background: transparent !important;
+  border: 0;
+  outline: 0;
 }
 
 .panel {
