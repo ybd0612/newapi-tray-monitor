@@ -26,6 +26,7 @@ fn open_settings<R: tauri::Runtime>(app: &tauri::AppHandle<R>) {
 pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_autostart::Builder::new().build())
+        .plugin(tauri_plugin_http::init())
         .setup(|app| {
             let show = MenuItemBuilder::with_id("show", "显示面板").build(app)?;
             let settings = MenuItemBuilder::with_id("settings", "设置").build(app)?;

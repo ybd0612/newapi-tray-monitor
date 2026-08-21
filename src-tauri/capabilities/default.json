@@ -5,6 +5,7 @@
   "windows": ["main", "settings"],
   "permissions": [
     "core:default",
-    "autostart:default"
+    "autostart:default",
+    "http:default"
   ]
 }

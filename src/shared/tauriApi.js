@@ -1,5 +1,8 @@
-import { fetchUser, fetchTodayStat, fetchPeriodData } from '../main/api.js';
+import { fetchUser, fetchTodayStat, fetchPeriodData, configureFetch } from '../main/api.js';
+import { fetch as tauriFetch } from '@tauri-apps/plugin-http';
 import { parseUser, parseTodayStat } from '../main/metrics.js';
+
+configureFetch(tauriFetch);
 import { DEFAULT_CONFIG, MIN_REFRESH_INTERVAL } from './constants.js';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';

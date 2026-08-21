@@ -2,6 +2,12 @@
 // 所有请求带 10s 超时（AbortController）。任何失败都向上抛出，由主进程统一兜底。
 import { REQUEST_TIMEOUT_MS } from '../shared/constants.js';
 
+let fetchImpl = globalThis.fetch;
+
+export function configureFetch(client) {
+  fetchImpl = client || globalThis.fetch;
+}
+
 /** 获取指定时间范围内的汇总数据，避免读取日志分页。 */
 export async function fetchPeriodData(baseUrl, token, startTimestamp, endTimestamp, userId, defaultTime) {
   const maxSpan = 27 * 24 * 60 * 60;
@@ -42,7 +48,7 @@ async function fetchWithTimeout(url, options = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
   try {
-    return await fetch(url, { ...options, signal: controller.signal });
+    return await fetchImpl(url, { ...options, signal: controller.signal });
   } finally {
     clearTimeout(timer);
   }
