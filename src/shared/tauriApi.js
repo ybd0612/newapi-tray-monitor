@@ -113,7 +113,8 @@ export const tauriApi = {
       const data = await fetchUser(baseUrl, token, userId);
       return { ok: true, message: `连接成功，用户 ${data.username || '(未返回)'}` };
     } catch (error) {
-      return { ok: false, message: error?.message || '未知错误' };
+      const message = error?.message || String(error) || '未知错误';
+      return { ok: false, message: `测试失败：${message}` };
     }
   },
   getAutoStart: () => isEnabled(),
