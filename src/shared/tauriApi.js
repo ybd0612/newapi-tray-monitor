@@ -29,13 +29,19 @@ function getDayRange() {
   const now = new Date();
   const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const end = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-  return { startTimestamp: start.getTime() / 1000, endTimestamp: end.getTime() / 1000 };
+  return {
+    startTimestamp: Math.floor(start.getTime() / 1000),
+    endTimestamp: Math.floor(end.getTime() / 1000),
+  };
 }
 
 function getMonthRange() {
   const now = new Date();
   const start = new Date(now.getFullYear(), now.getMonth(), 1);
-  return { startTimestamp: start.getTime() / 1000, endTimestamp: now.getTime() / 1000 };
+  return {
+    startTimestamp: Math.floor(start.getTime() / 1000),
+    endTimestamp: Math.floor(now.getTime() / 1000),
+  };
 }
 
 async function collectMetrics(cfg) {
