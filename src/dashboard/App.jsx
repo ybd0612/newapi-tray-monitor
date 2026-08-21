@@ -22,8 +22,6 @@ function formatCompact(v) {
   const abs = Math.abs(num);
   const units = [
     [100000000, '亿'],
-    [10000000, '千万'],
-    [1000000, '百万'],
     [10000, '万'],
   ];
   const unit = units.find(([threshold]) => abs >= threshold);
