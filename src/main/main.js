@@ -390,9 +390,14 @@ function registerIpc() {
 
   ipcMain.handle(IPC_CHANNELS.SET_AUTO_START, (_event, enabled) => {
     const openAtLogin = Boolean(enabled);
-    app.setLoginItemSettings({ openAtLogin, path: process.execPath, args: ['--hidden'] });
+    const loginItem = { openAtLogin, args: ['--hidden'] };
+    // 打包后使用当前 exe；开发环境不指定 Electron 的启动器路径，避免写入无效自启项。
+    if (app.isPackaged) loginItem.path = process.execPath;
+    app.setLoginItemSettings(loginItem);
     config = saveConfig({ ...config, autoStart: openAtLogin });
-    return Boolean(app.getLoginItemSettings().openAtLogin);
+    // Windows 登录项注册表更新可能不会立即反映到 getLoginItemSettings()，
+    // 这里直接返回用户刚选择的状态，避免开关被回读值立刻弹回。
+    return openAtLogin;
   });
 
   ipcMain.handle(IPC_CHANNELS.TEST_CONNECTION, async (_event, { baseUrl, token, userId }) => {

@@ -61,10 +61,14 @@ export default function App() {
 
   const handleAutoStart = async (event) => {
     const enabled = event.target.checked;
+    // 先更新界面，避免 IPC 或 Windows 注册表回写延迟造成“按钮点不动”的错觉。
+    setAutoStart(enabled);
     try {
       const actual = await window.api.setAutoStart(enabled);
-      setAutoStart(actual);
+      setAutoStart(Boolean(actual));
+      setErrorMsg('');
     } catch (e) {
+      setAutoStart(!enabled);
       setErrorMsg('开机自启设置失败：' + (e?.message || '未知错误'));
     }
   };
