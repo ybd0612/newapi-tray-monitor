@@ -89,6 +89,22 @@ export async function createTauriApi({ onMetrics } = {}) {
 export const tauriApi = {
   getConfig: async () => loadConfig(),
   saveConfig: async (cfg) => saveConfig(cfg),
+  setPanelOpacity: async (value) => {
+    const opacity = Math.min(1, Math.max(0.35, Number(value) || 1));
+    saveConfig({ ...loadConfig(), panelOpacity: opacity });
+    return opacity;
+  },
+  getPanelPosition: async () => {
+    const position = loadConfig().panelPosition;
+    if (position) await appWindow.setPosition({ type: 'Physical', x: position.x, y: position.y });
+    return position;
+  },
+  startDragging: () => appWindow.startDragging(),
+  onMoved: (handler) => appWindow.onMoved(({ payload }) => {
+    const position = { x: payload.x, y: payload.y };
+    saveConfig({ ...loadConfig(), panelPosition: position });
+    handler?.(position);
+  }),
   testConnection: async ({ baseUrl, token, userId }) => {
     try {
       const data = await fetchUser(baseUrl, token, userId);

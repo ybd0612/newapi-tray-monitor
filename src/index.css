@@ -18,6 +18,7 @@ body,
 /* ---- dashboard 面板样式 ---- */
 .dashboard-root {
   min-height: 100%;
+  -webkit-app-region: drag;
   display: flex;
   justify-content: center;
   align-items: flex-end;

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import StatCard from './StatCard.jsx';
-import { createTauriApi } from '../shared/tauriApi.js';
+import { createTauriApi, tauriApi } from '../shared/tauriApi.js';
 
 // 数量格式化：保留千分位
 function formatInt(v) {
@@ -33,9 +33,16 @@ export default function App() {
   const [metrics, setMetrics] = useState(null);
   const [error, setError] = useState(null);
   const [failureCount, setFailureCount] = useState(0);
+  const [panelOpacity, setPanelOpacity] = useState(1);
+  const panelOpacityRef = useRef(1);
+
+  useEffect(() => {
+    panelOpacityRef.current = panelOpacity;
+  }, [panelOpacity]);
 
   useEffect(() => {
     let dispose = null;
+    let unlistenMoved = null;
     const api = window.api;
     if (!api) {
       createTauriApi({
@@ -58,9 +65,19 @@ export default function App() {
       if (api && api.dashboardWheel) {
         event.preventDefault();
         api.dashboardWheel(event.deltaY);
+      } else if (!api) {
+        event.preventDefault();
+        const next = Math.min(1, Math.max(0.35, panelOpacityRef.current + (event.deltaY < 0 ? 0.05 : -0.05)));
+        setPanelOpacity(next);
+        tauriApi.setPanelOpacity(next);
       }
     };
     window.addEventListener('wheel', onWheel, { passive: false });
+    if (!api) {
+      tauriApi.getConfig().then((cfg) => setPanelOpacity(Number(cfg.panelOpacity) || 1));
+      tauriApi.getPanelPosition();
+      tauriApi.onMoved(() => {}).then((unlisten) => { unlistenMoved = unlisten; });
+    }
     console.log('[dashboard] api ready', Boolean(api), Object.keys(api || {}));
     const handler = (payload) => {
       if (payload && payload.ok) {
@@ -80,6 +97,7 @@ export default function App() {
     if (api && api.dashboardReady) api.dashboardReady();
     return () => {
       window.removeEventListener('wheel', onWheel);
+      unlistenMoved?.();
       dispose?.();
     };
   }, []);
@@ -92,7 +110,7 @@ export default function App() {
   const todayTokens = metrics ? formatCompact(metrics.todayTokens) : '--';
 
   return (
-    <div className="dashboard-root">
+    <div className="dashboard-root" data-tauri-drag-region style={!window.api ? { opacity: panelOpacity } : undefined}>
       <div className="panel">
         {error && <div className="error-bar">获取失败：{error}</div>}
 
