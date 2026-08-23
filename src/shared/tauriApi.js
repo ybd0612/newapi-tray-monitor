@@ -4,7 +4,7 @@ import { parseUser, parseTodayStat } from '../main/metrics.js';
 
 configureFetch(tauriFetch);
 import { DEFAULT_CONFIG, MIN_REFRESH_INTERVAL } from './constants.js';
-import { getCurrentWindow } from '@tauri-apps/api/window';
+import { getCurrentWindow, PhysicalPosition, PhysicalSize } from '@tauri-apps/api/window';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
 
 const CONFIG_KEY = 'newapi-tray-monitor-config';
@@ -106,15 +106,19 @@ export const tauriApi = {
   getPanelPosition: async () => {
     const config = loadConfig();
     if (config.panelPosition) {
-      await appWindow.setPosition({ type: 'Physical', x: config.panelPosition.x, y: config.panelPosition.y });
+      await appWindow.setPosition(new PhysicalPosition(config.panelPosition.x, config.panelPosition.y));
     }
     if (config.panelSize) {
-      await appWindow.setSize({ type: 'Physical', width: config.panelSize.width, height: config.panelSize.height });
+      await appWindow.setSize(new PhysicalSize(config.panelSize.width, config.panelSize.height));
     }
     return { position: config.panelPosition, size: config.panelSize, opacity: config.panelOpacity };
   },
   startDragging: async () => {
-    await appWindow.startDragging();
+    try {
+      await appWindow.startDragging();
+    } catch (error) {
+      console.error('[dashboard] startDragging failed', error);
+    }
   },
   onMoved: (handler) => appWindow.onMoved(async ({ payload }) => {
     const position = { x: payload.x, y: payload.y };
