@@ -5,6 +5,7 @@ import { parseUser, parseTodayStat } from '../main/metrics.js';
 configureFetch(tauriFetch);
 import { DEFAULT_CONFIG, MIN_REFRESH_INTERVAL } from './constants.js';
 import { getCurrentWindow, PhysicalPosition, PhysicalSize } from '@tauri-apps/api/window';
+import { emit, listen } from '@tauri-apps/api/event';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
 
 const CONFIG_KEY = 'newapi-tray-monitor-config';
@@ -97,7 +98,12 @@ export async function createTauriApi({ onMetrics } = {}) {
 
 export const tauriApi = {
   getConfig: async () => loadConfig(),
-  saveConfig: async (cfg) => saveConfig(cfg),
+  saveConfig: async (cfg) => {
+    const merged = saveConfig(cfg);
+    await emit('config-updated', { balanceAlertThreshold: merged.balanceAlertThreshold });
+    return merged;
+  },
+  onConfigUpdated: (handler) => listen('config-updated', ({ payload }) => handler?.(payload)),
   setPanelOpacity: async (value) => {
     const opacity = Math.min(1, Math.max(0.35, Number(value) || 1));
     saveConfig({ ...loadConfig(), panelOpacity: opacity });

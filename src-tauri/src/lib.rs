@@ -15,7 +15,8 @@ fn open_settings<R: tauri::Runtime>(app: &tauri::AppHandle<R>) {
     if app.get_webview_window("settings").is_none() {
         let _ = WebviewWindowBuilder::new(app, "settings", WebviewUrl::App("settings.html".into()))
             .title("NewAPI 监控设置")
-            .inner_size(480.0, 520.0)
+            .inner_size(480.0, 680.0)
+            .min_inner_size(420.0, 560.0)
             .center()
             .build();
     }

@@ -47,15 +47,31 @@ export default function App() {
   useEffect(() => {
     const api = window.api || tauriApi;
     if (typeof api.getConfig !== 'function') return undefined;
-    api.getConfig().then((config) => {
-      const parsedThreshold = Number(config?.balanceAlertThreshold);
-      if (Number.isFinite(parsedThreshold)) {
-        setBalanceAlertThreshold(parsedThreshold);
-      }
-    }).catch(() => {
-      setBalanceAlertThreshold(DEFAULT_CONFIG.balanceAlertThreshold);
-    });
-    return undefined;
+    const loadThreshold = () => {
+      api.getConfig().then((config) => {
+        const parsedThreshold = Number(config?.balanceAlertThreshold);
+        if (Number.isFinite(parsedThreshold)) {
+          setBalanceAlertThreshold(parsedThreshold);
+        }
+      }).catch(() => {
+        setBalanceAlertThreshold(DEFAULT_CONFIG.balanceAlertThreshold);
+      });
+    };
+    const onStorage = (event) => {
+      if (event.key === 'newapi-tray-monitor-config') loadThreshold();
+    };
+    let unlistenConfig = null;
+    loadThreshold();
+    window.addEventListener('storage', onStorage);
+    if (!window.api && typeof tauriApi.onConfigUpdated === 'function') {
+      tauriApi.onConfigUpdated(loadThreshold).then((unlisten) => {
+        unlistenConfig = unlisten;
+      });
+    }
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      unlistenConfig?.();
+    };
   }, []);
 
   useEffect(() => {
