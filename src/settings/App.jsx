@@ -81,6 +81,9 @@ export default function App() {
     const payload = {
       ...form,
       refreshInterval: Number(form.refreshInterval) || DEFAULT_CONFIG.refreshInterval,
+      balanceAlertThreshold: Number.isFinite(Number(form.balanceAlertThreshold))
+        ? Number(form.balanceAlertThreshold)
+        : DEFAULT_CONFIG.balanceAlertThreshold,
       factor: DEFAULT_CONFIG.factor,
       currencySymbol: '',
     };
@@ -139,6 +142,15 @@ export default function App() {
           value={form.refreshInterval}
           onChange={update('refreshInterval')}
           inputProps={{ min: 10 }}
+          fullWidth
+        />
+        <TextField
+          label="余额提示阈值"
+          type="number"
+          value={form.balanceAlertThreshold}
+          onChange={update('balanceAlertThreshold')}
+          inputProps={{ min: 0, step: 'any' }}
+          helperText="余额严格低于该值时以红色显示"
           fullWidth
         />
 

@@ -110,6 +110,10 @@ body::-webkit-scrollbar,
   white-space: nowrap;
 }
 
+.stat-card-alert .stat-value {
+  color: #ff6b6b;
+}
+
 .cap-hint {
   margin-top: 8px;
   font-size: 10px;

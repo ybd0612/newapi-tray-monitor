@@ -1,27 +1,27 @@
-# 窗口交互修复概览
+# NewAPI Tray Monitor 发布概览
 
-## 本轮修复
-- 增加 Tauri 窗口移动、位置读取、尺寸读取、位置设置和尺寸设置权限。
-- 使用 `PhysicalPosition` / `PhysicalSize` 恢复窗口位置和大小。
-- 保留主面板左键拖拽、右键屏蔽和透明度记忆逻辑。
+## 本轮变更
+- 设置页新增“余额提示阈值”，默认值为 5，并持久化保存。
+- 主界面余额严格低于阈值时显示红色字体，达到或高于阈值保持原样。
+- `npm run build:tauri:dev` 构建验证通过；普通 `npm run build` 因现有 `dist/assets` 安全清理失败未完成。
+- QA 子任务达到最大轮次，未返回正式 QA 报告；已完成代码静态检查与构建验证。
 
-## 验证
-- 前端独立构建成功。
-- Tauri release 编译成功。
-- NSIS 安装包生成成功，文件大小约 3.67 MB。
-- `git diff --check` 通过。
+## 已完成
+- 远程仓库：`git@github.com:ybd0612/newapi-tray-monitor.git`
+- 推送 `main` 分支。
+- 创建并推送版本标签 `v1.0.0`。
+- 创建 GitHub Release：`NewAPI监控 v1.0.0`。
+- 上传 Windows NSIS 安装包，使用 ASCII 文件名避免中文文件名下载乱码。
 
-## 最新安装包
-- `C:\Users\ybd06\temp\newapi-tray-monitor-target-20260823\release\bundle\nsis\NewAPI监控_1.0.0_x64-setup.exe`
-- 生成时间：2026-08-23 11:42:32
+## Release
+- 地址：https://github.com/ybd0612/newapi-tray-monitor/releases/tag/v1.0.0
+- 安装包：`NewAPI-monitor-1.0.0-x64-setup.exe`
+- 大小：3,665,101 bytes
+- SHA-256：`1bac1e8d4d34bde75afe7dd4d20e1da4910365ae479d2bc9240a5ce1cc581c41`
 
-## 版本发布
-- 版本：`1.0.0`
-- Git 标签：`v1.0.0`
-- Release 附件：`NewAPI监控_1.0.0_x64-setup.exe`
-
-## 提交
+## 版本提交
+- `7ab7d08 发布 v1.0.0`
 - `4086494 修复窗口权限和状态恢复`
 
 ## 说明
-请安装本轮最新安装包后，依次测试：移动窗口后托盘隐藏再显示、调整大小后隐藏再显示、完全退出后重新启动，以及主面板左键拖拽。
+构建缓存和临时前端目录未提交到仓库。

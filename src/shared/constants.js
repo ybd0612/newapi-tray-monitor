@@ -20,6 +20,7 @@ export const DEFAULT_CONFIG = {
   baseUrl: '', // 中转站地址，如 https://api.example.com
   token: '', // 访问令牌
   refreshInterval: 60, // 刷新间隔（秒）
+  balanceAlertThreshold: 5, // 余额提示阈值，余额严格低于该值时标红
   currencySymbol: '$', // 货币符号
   factor: 500000, // 换算因子：额度单位 / factor = 金额
   userId: '', // 数字用户 ID（New-Api-User 头）；factory.pub 等强制要求，留空兼容普通 NewAPI

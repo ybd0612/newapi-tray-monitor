@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import StatCard from './StatCard.jsx';
 import { createTauriApi, tauriApi } from '../shared/tauriApi.js';
+import { DEFAULT_CONFIG } from '../shared/constants.js';
 
 // 数量格式化：保留千分位
 function formatInt(v) {
@@ -34,11 +35,28 @@ export default function App() {
   const [error, setError] = useState(null);
   const [failureCount, setFailureCount] = useState(0);
   const [panelOpacity, setPanelOpacity] = useState(1);
+  const [balanceAlertThreshold, setBalanceAlertThreshold] = useState(
+    DEFAULT_CONFIG.balanceAlertThreshold,
+  );
   const panelOpacityRef = useRef(1);
 
   useEffect(() => {
     panelOpacityRef.current = panelOpacity;
   }, [panelOpacity]);
+
+  useEffect(() => {
+    const api = window.api || tauriApi;
+    if (typeof api.getConfig !== 'function') return undefined;
+    api.getConfig().then((config) => {
+      const parsedThreshold = Number(config?.balanceAlertThreshold);
+      if (Number.isFinite(parsedThreshold)) {
+        setBalanceAlertThreshold(parsedThreshold);
+      }
+    }).catch(() => {
+      setBalanceAlertThreshold(DEFAULT_CONFIG.balanceAlertThreshold);
+    });
+    return undefined;
+  }, []);
 
   useEffect(() => {
     let dispose = null;
@@ -115,6 +133,9 @@ export default function App() {
   const todayRequests = metrics ? formatInt(metrics.todayRequests) : '--';
   const monthTokens = metrics ? formatCompact(metrics.monthTokens) : '--';
   const todayTokens = metrics ? formatCompact(metrics.todayTokens) : '--';
+  const balanceValue = Number(metrics?.balance);
+  const isBalanceAlert = Number.isFinite(balanceValue)
+    && balanceValue < balanceAlertThreshold;
 
   const handleMouseDown = (event) => {
     if (event.button === 0) {
@@ -129,7 +150,11 @@ export default function App() {
         {error && <div className="error-bar">获取失败：{error}</div>}
 
         <div className="metric-row metric-row-balance">
-          <StatCard label="余额" value={balance} />
+          <StatCard
+            label="余额"
+            value={balance}
+            className={isBalanceAlert ? 'stat-card-alert' : ''}
+          />
           <StatCard label="今日消费" value={todayAmount} />
         </div>
         <div className="metric-row">
