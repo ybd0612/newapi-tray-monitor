@@ -47,7 +47,12 @@ export default function App() {
   useEffect(() => {
     const api = window.api || tauriApi;
     if (typeof api.getConfig !== 'function') return undefined;
-    const loadThreshold = () => {
+    const loadThreshold = (payload) => {
+      const eventThreshold = Number(payload?.balanceAlertThreshold);
+      if (Number.isFinite(eventThreshold)) {
+        setBalanceAlertThreshold(eventThreshold);
+        return;
+      }
       api.getConfig().then((config) => {
         const parsedThreshold = Number(config?.balanceAlertThreshold);
         if (Number.isFinite(parsedThreshold)) {
@@ -64,7 +69,7 @@ export default function App() {
     loadThreshold();
     window.addEventListener('storage', onStorage);
     if (!window.api && typeof tauriApi.onConfigUpdated === 'function') {
-      tauriApi.onConfigUpdated(loadThreshold).then((unlisten) => {
+      tauriApi.onConfigUpdated((payload) => loadThreshold(payload)).then((unlisten) => {
         unlistenConfig = unlisten;
       });
     }
