@@ -26,9 +26,18 @@ fn open_settings<R: tauri::Runtime>(app: &tauri::AppHandle<R>) {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .plugin(tauri_plugin_autostart::Builder::new().build())
+        .plugin(
+            tauri_plugin_autostart::Builder::new()
+                // 注册表 Run 命令附带该参数，用于区分“开机自启启动”和“手动启动”
+                .args(["--autostart"])
+                .build(),
+        )
         .plugin(tauri_plugin_http::init())
         .setup(|app| {
+            // 开机自启时自动显示主窗口；手动启动保持隐藏到托盘
+            if std::env::args().any(|arg| arg == "--autostart") {
+                show_window(app.handle(), "main");
+            }
             let show = MenuItemBuilder::with_id("show", "显示面板").build(app)?;
             let settings = MenuItemBuilder::with_id("settings", "设置").build(app)?;
             let hide = MenuItemBuilder::with_id("hide", "隐藏面板").build(app)?;
