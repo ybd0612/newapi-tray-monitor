@@ -1,6 +1,6 @@
 [package]
 name = "newapi-tray-monitor"
-version = "1.0.1"
+version = "1.0.2"
 description = "NewAPI 余额与用量托盘监控"
 authors = ["ybd0612"]
 edition = "2021"
