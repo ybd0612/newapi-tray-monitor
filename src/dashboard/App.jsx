@@ -17,6 +17,13 @@ function formatMoney(v) {
   return num.toFixed(4);
 }
 
+// 消费金额格式化：保留 2 位小数
+function formatConsumption(v) {
+  const num = Number(v);
+  if (!Number.isFinite(num)) return '--';
+  return num.toFixed(2);
+}
+
 // 大数量使用中文单位，统一保留 4 位小数
 function formatCompact(v) {
   const num = Number(v);
@@ -149,7 +156,8 @@ export default function App() {
   }, []);
 
   const balance = metrics ? formatMoney(metrics.balance) : '--';
-  const todayAmount = metrics ? formatMoney(metrics.todayAmount) : '--';
+  const totalAmount = metrics ? formatConsumption(metrics.usedAmount) : '--';
+  const todayAmount = metrics ? formatConsumption(metrics.todayAmount) : '--';
   const requestCount = metrics ? formatInt(metrics.requestCount) : '--';
   const todayRequests = metrics ? formatInt(metrics.todayRequests) : '--';
   const monthTokens = metrics ? formatCompact(metrics.monthTokens) : '--';
@@ -176,7 +184,7 @@ export default function App() {
             value={balance}
             className={isBalanceAlert ? 'stat-card-alert' : ''}
           />
-          <StatCard label="今日消费" value={todayAmount} />
+          <StatCard label="总消费 / 今日消费" value={`${totalAmount} / ${todayAmount}`} />
         </div>
         <div className="metric-row">
           <StatCard label="本月请求量" value={requestCount} />

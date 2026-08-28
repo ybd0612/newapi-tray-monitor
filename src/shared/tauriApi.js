@@ -59,6 +59,7 @@ async function collectMetrics(cfg) {
   return {
     ok: true,
     balance: parsedUser.balance,
+    usedAmount: parsedUser.usedAmount,
     todayAmount: parsedStat.todayAmount,
     requestCount: monthData.requests,
     todayRequests: todayData.requests,
