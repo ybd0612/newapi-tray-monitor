@@ -10,11 +10,11 @@ function formatInt(v) {
   return num.toLocaleString('zh-CN');
 }
 
-// 金额格式化：保留 4 位小数
+// 金额格式化：保留 2 位小数
 function formatMoney(v) {
   const num = Number(v);
   if (!Number.isFinite(num)) return '--';
-  return num.toFixed(4);
+  return num.toFixed(2);
 }
 
 // 消费金额格式化：保留 2 位小数
