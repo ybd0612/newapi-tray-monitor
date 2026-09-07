@@ -11,6 +11,7 @@
 - 安装包：`src-tauri/target/release/bundle/nsis/NewAPI监控_1.0.5_x64-setup.exe`
 - 目标：Windows x64 NSIS
 - 本地构建：因本机未配置 `TAURI_SIGNING_PRIVATE_KEY`，只生成未签名 exe；GitHub Actions 已使用仓库 Secret 成功生成正式签名资产。
+- README 已同步当前托盘交互、自动更新、仓库链接和 v1.0.5 发布口径。
 - 验证：metrics 18/18、API mock 6/6、Vite 构建、Rust/Tauri `cargo check` 均通过。
 
 ## v1.0.5 GitHub Release
