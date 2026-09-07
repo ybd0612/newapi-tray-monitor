@@ -9,6 +9,8 @@ import { emit, listen } from '@tauri-apps/api/event';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
 
 const CONFIG_KEY = 'newapi-tray-monitor-config';
+const LEGACY_PANEL_SIZE = { width: 304, height: 212 };
+const CURRENT_PANEL_SIZE = { width: 304, height: 124 };
 const appWindow = getCurrentWindow();
 
 function loadConfig() {
@@ -117,10 +119,18 @@ export const tauriApi = {
     if (config.panelPosition) {
       await appWindow.setPosition(new PhysicalPosition(config.panelPosition.x, config.panelPosition.y));
     }
-    if (config.panelSize) {
-      await appWindow.setSize(new PhysicalSize(config.panelSize.width, config.panelSize.height));
+    let panelSize = config.panelSize;
+    const isLegacyDefaultSize = panelSize
+      && Number(panelSize.width) === LEGACY_PANEL_SIZE.width
+      && Number(panelSize.height) === LEGACY_PANEL_SIZE.height;
+    if (isLegacyDefaultSize) {
+      panelSize = { ...CURRENT_PANEL_SIZE };
+      saveConfig({ ...config, panelSize });
     }
-    return { position: config.panelPosition, size: config.panelSize, opacity: config.panelOpacity };
+    if (panelSize) {
+      await appWindow.setSize(new PhysicalSize(panelSize.width, panelSize.height));
+    }
+    return { position: config.panelPosition, size: panelSize, opacity: config.panelOpacity };
   },
   startDragging: async () => {
     try {
