@@ -9,8 +9,7 @@ import { emit, listen } from '@tauri-apps/api/event';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
 
 const CONFIG_KEY = 'newapi-tray-monitor-config';
-const LEGACY_PANEL_SIZE = { width: 304, height: 212 };
-const CURRENT_PANEL_SIZE = { width: 304, height: 124 };
+const CURRENT_PANEL_SIZE = { width: 240, height: 112 };
 const appWindow = getCurrentWindow();
 
 function loadConfig() {
@@ -119,17 +118,15 @@ export const tauriApi = {
     if (config.panelPosition) {
       await appWindow.setPosition(new PhysicalPosition(config.panelPosition.x, config.panelPosition.y));
     }
-    let panelSize = config.panelSize;
-    const isLegacyDefaultSize = panelSize
-      && Number(panelSize.width) === LEGACY_PANEL_SIZE.width
-      && Number(panelSize.height) === LEGACY_PANEL_SIZE.height;
-    if (isLegacyDefaultSize) {
-      panelSize = { ...CURRENT_PANEL_SIZE };
+    // Window resizing is disabled, so always normalize persisted dimensions to
+    // the compact fixed size instead of restoring stale user/legacy geometry.
+    const panelSize = { ...CURRENT_PANEL_SIZE };
+    if (!config.panelSize
+      || Number(config.panelSize.width) !== panelSize.width
+      || Number(config.panelSize.height) !== panelSize.height) {
       saveConfig({ ...config, panelSize });
     }
-    if (panelSize) {
-      await appWindow.setSize(new PhysicalSize(panelSize.width, panelSize.height));
-    }
+    await appWindow.setSize(new PhysicalSize(panelSize.width, panelSize.height));
     return { position: config.panelPosition, size: panelSize, opacity: config.panelOpacity };
   },
   startDragging: async () => {
