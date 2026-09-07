@@ -10,8 +10,15 @@
 - 版本：`1.0.5`
 - 安装包：`src-tauri/target/release/bundle/nsis/NewAPI监控_1.0.5_x64-setup.exe`
 - 目标：Windows x64 NSIS
-- 签名：本地未配置 `TAURI_SIGNING_PRIVATE_KEY`，因此只生成未签名 exe，未生成 `.sig` 文件。
+- 本地构建：因本机未配置 `TAURI_SIGNING_PRIVATE_KEY`，只生成未签名 exe；GitHub Actions 已使用仓库 Secret 成功生成正式签名资产。
 - 验证：metrics 18/18、API mock 6/6、Vite 构建、Rust/Tauri `cargo check` 均通过。
+
+## v1.0.5 GitHub Release
+- 地址：https://github.com/ybd0612/newapi-tray-monitor/releases/tag/v1.0.5
+- 安装包：`NewAPI._1.0.5_x64-setup.exe`
+- 签名文件：`NewAPI._1.0.5_x64-setup.exe.sig`
+- GitHub Actions 任务：`34126360673`，已成功完成。
+- Release 状态：正式发布，非草稿、非预发布。
 
 ## v1.0.4 历史发布
 - GitHub Release：https://github.com/ybd0612/newapi-tray-monitor/releases/tag/v1.0.4
