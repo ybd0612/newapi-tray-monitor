@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import StatCard from './StatCard.jsx';
 import { createTauriApi, tauriApi } from '../shared/tauriApi.js';
 import { DEFAULT_CONFIG } from '../shared/constants.js';
+import { checkForAppUpdate, listenForUpdateInstall } from '../shared/updater.js';
 
 // 数量格式化：保留千分位
 function formatInt(v) {
@@ -89,6 +90,11 @@ export default function App() {
 
   useEffect(() => {
     let dispose = null;
+    let unlistenUpdateInstall = null;
+    void listenForUpdateInstall().then((unlisten) => { unlistenUpdateInstall = unlisten; });
+    // Download and signature verification stay silent; the tray receives the
+    // explicit confirmation item only when an update is ready to install.
+    void checkForAppUpdate();
     let unlistenMoved = null;
     let unlistenResized = null;
     const api = window.api;
@@ -153,6 +159,7 @@ export default function App() {
       unlistenResized?.();
       tauriApi.saveWindowState();
       dispose?.();
+      unlistenUpdateInstall?.();
     };
   }, []);
 

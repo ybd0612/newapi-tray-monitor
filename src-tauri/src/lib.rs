@@ -1,5 +1,6 @@
 use tauri::{
     menu::{MenuBuilder, MenuItemBuilder, PredefinedMenuItem},
+    Emitter, Listener,
     tray::{MouseButton, MouseButtonState, TrayIconBuilder, TrayIconEvent},
     Manager, WebviewUrl, WebviewWindowBuilder,
 };
@@ -33,6 +34,8 @@ pub fn run() {
                 .build(),
         )
         .plugin(tauri_plugin_http::init())
+        .plugin(tauri_plugin_process::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .setup(|app| {
             // 开机自启时自动显示主窗口；手动启动保持隐藏到托盘
             if std::env::args().any(|arg| arg == "--autostart") {
@@ -41,10 +44,22 @@ pub fn run() {
             let show = MenuItemBuilder::with_id("show", "显示面板").build(app)?;
             let settings = MenuItemBuilder::with_id("settings", "设置").build(app)?;
             let hide = MenuItemBuilder::with_id("hide", "隐藏面板").build(app)?;
+            // This item is enabled only after the signed package has downloaded.
+            // Clicking it is the explicit user confirmation to install/relaunch.
+            let update = MenuItemBuilder::with_id("update-install", "更新已就绪（点击安装）")
+                .enabled(false)
+                .build(app)?;
             let quit = PredefinedMenuItem::quit(app, Some("退出"))?;
+            let separator = PredefinedMenuItem::separator(app)?;
             let menu = MenuBuilder::new(app)
-                .items(&[&show, &settings, &hide, &PredefinedMenuItem::separator(app)?, &quit])
+                .items(&[&show, &settings, &hide, &separator, &update, &quit])
                 .build()?;
+
+            let update_item = update.clone();
+            app.listen("update-ready", move |_event| {
+                let _ = update_item.set_enabled(true);
+                let _ = update_item.set_text("更新已就绪（点击安装）");
+            });
 
             let tray_icon = app.default_window_icon().cloned();
             TrayIconBuilder::new()
@@ -70,6 +85,9 @@ pub fn run() {
                         }
                     }
                     "settings" => open_settings(app),
+                    "update-install" => {
+                        let _ = app.emit("update-install-requested", ());
+                    }
                     _ => {}
                 })
                 .build(app)?;

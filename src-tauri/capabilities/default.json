@@ -11,6 +11,9 @@
     "core:window:allow-set-position",
     "core:window:allow-set-size",
     "autostart:default",
+    "updater:default",
+    "process:default",
+    "process:allow-restart",
     {
       "identifier": "http:default",
       "allow": [
