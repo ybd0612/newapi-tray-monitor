@@ -12,6 +12,7 @@ import {
   Link,
 } from '@mui/material';
 import { DEFAULT_CONFIG } from '../shared/constants.js';
+import { openUrl } from '@tauri-apps/plugin-opener';
 import { tauriApi } from '../shared/tauriApi.js';
 
 export default function App() {
@@ -74,6 +75,15 @@ export default function App() {
     } catch (e) {
       setAutoStart(!enabled);
       setErrorMsg('开机自启设置失败：' + (e?.message || '未知错误'));
+    }
+  };
+
+  const handleOpenRepository = async (event) => {
+    event.preventDefault();
+    try {
+      await openUrl('https://github.com/ybd0612/newapi-tray-monitor');
+    } catch (e) {
+      setErrorMsg('打开仓库失败：' + (e?.message || '未知错误'));
     }
   };
 
@@ -175,8 +185,7 @@ export default function App() {
             项目仓库：{' '}
             <Link
               href="https://github.com/ybd0612/newapi-tray-monitor"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={handleOpenRepository}
               underline="hover"
             >
               GitHub 仓库
