@@ -50,6 +50,7 @@ body::-webkit-scrollbar,
 
 .panel {
   width: 100%;
+  height: 112px;
   max-width: none;
   background: rgba(18, 22, 31, calc(0.94 * var(--panel-opacity, 1)));
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -120,12 +121,14 @@ body::-webkit-scrollbar,
 
 .stat-label {
   font-size: 10px;
+  line-height: 12px;
   opacity: 0.65;
   white-space: nowrap;
 }
 
 .stat-value {
   font-size: 14px;
+  line-height: 17px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
