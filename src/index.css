@@ -29,7 +29,8 @@ body::-webkit-scrollbar,
 /* ---- dashboard 面板样式 ---- */
 .dashboard-root {
   width: 100%;
-  height: 100%;
+  /* 仅包裹实际面板内容，避免透明窗口底部被根节点覆盖并触发拖拽。 */
+  height: auto;
   min-height: 0;
   display: flex;
   justify-content: center;
