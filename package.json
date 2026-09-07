@@ -9,6 +9,7 @@
     "build:tauri": "vite build --emptyOutDir false",
     "build:tauri:dev": "vite build --emptyOutDir false",
     "tauri:dev": "tauri dev",
+    "tauri": "tauri",
     "tauri:build": "tauri build"
   },
   "dependencies": {
