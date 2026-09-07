@@ -198,8 +198,6 @@ export default function App() {
   return (
     <div className="dashboard-root" onMouseDown={handleMouseDown} style={{ '--panel-opacity': panelOpacity }}>
       <div className="panel">
-        {error && <div className="error-bar">获取失败：{error}</div>}
-
         <div className="metric-row metric-row-primary">
           <StatCard
             label="余额"
@@ -207,6 +205,7 @@ export default function App() {
             className={`stat-card-primary ${isBalanceAlert ? 'stat-card-alert' : ''}`.trim()}
           />
           <StatCard label="总消费" value={totalAmount} className="stat-card-primary" />
+          {error && <div className="error-bar">获取失败：{error}</div>}
         </div>
         <div
           className={`metric-row metric-row-secondary ${isMonth ? 'metric-row-secondary-month' : ''}`.trim()}

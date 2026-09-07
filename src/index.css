@@ -50,8 +50,8 @@ body::-webkit-scrollbar,
 
 .panel {
   width: 100%;
-  min-height: 136px;
   max-width: none;
+  position: relative;
   background: rgba(18, 22, 31, calc(0.94 * var(--panel-opacity, 1)));
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 22px;
@@ -74,10 +74,24 @@ body::-webkit-scrollbar,
 }
 
 .error-bar {
-  font-size: 12px;
+  position: absolute;
+  top: 2px;
+  left: 10px;
+  max-width: 52%;
+  box-sizing: border-box;
+  padding: 1px 4px;
+  font-size: 11px;
+  line-height: 12px;
   color: #ff8a80;
-  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  z-index: 2;
+  background: rgba(18, 22, 31, 0.9);
+  border-radius: 4px;
 }
+
 
 .metric-row {
   display: grid;
@@ -139,8 +153,21 @@ body::-webkit-scrollbar,
 }
 
 .cap-hint {
-  margin-top: 8px;
+  position: absolute;
+  right: 10px;
+  bottom: 3px;
+  max-width: 52%;
+  box-sizing: border-box;
+  padding: 1px 4px;
   font-size: 10px;
+  line-height: 12px;
   opacity: 0.6;
   text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  z-index: 2;
+  background: rgba(18, 22, 31, 0.9);
+  border-radius: 4px;
 }
