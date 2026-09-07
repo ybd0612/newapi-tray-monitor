@@ -33,7 +33,7 @@ body::-webkit-scrollbar,
   min-height: 0;
   display: flex;
   justify-content: center;
-  align-items: stretch;
+  align-items: flex-start;
   padding: 0;
   box-sizing: border-box;
   -webkit-app-region: no-drag;
@@ -85,14 +85,13 @@ body::-webkit-scrollbar,
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.metric-row-primary {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  padding-top: 4px;
-  padding-bottom: 10px;
+.metric-row-primary,
+.metric-row-secondary {
+  /* 两行共用三列网格，保证标签和值沿同一列左对齐。 */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .metric-row-secondary {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   border-bottom: 0;
   cursor: pointer;
   border-radius: 8px;
@@ -122,15 +121,6 @@ body::-webkit-scrollbar,
   font-size: 10px;
   opacity: 0.65;
   white-space: nowrap;
-}
-
-.stat-card-primary .stat-label {
-  font-size: 11px;
-  opacity: 0.72;
-}
-
-.stat-card-primary .stat-value {
-  font-size: 20px;
 }
 
 .stat-value {
