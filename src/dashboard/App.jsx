@@ -42,6 +42,7 @@ export default function App() {
   const [error, setError] = useState(null);
   const [failureCount, setFailureCount] = useState(0);
   const [panelOpacity, setPanelOpacity] = useState(1);
+  const [metricPeriod, setMetricPeriod] = useState('today');
   const [balanceAlertThreshold, setBalanceAlertThreshold] = useState(
     DEFAULT_CONFIG.balanceAlertThreshold,
   );
@@ -175,41 +176,58 @@ export default function App() {
     }
   };
 
+  const handleMetricPeriodToggle = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setMetricPeriod((period) => (period === 'today' ? 'month' : 'today'));
+  };
+
+  const isMonth = metricPeriod === 'month';
+  const secondaryMetrics = isMonth
+    ? [
+      { label: '本月消费', value: monthAmount },
+      { label: '本月请求量', value: monthRequests },
+      { label: '本月Token', value: monthTokens },
+    ]
+    : [
+      { label: '今日消费', value: todayAmount },
+      { label: '今日请求量', value: todayRequests },
+      { label: '今日Token', value: todayTokens },
+    ];
+
   return (
     <div className="dashboard-root" onMouseDown={handleMouseDown} style={{ '--panel-opacity': panelOpacity }}>
       <div className="panel">
         {error && <div className="error-bar">获取失败：{error}</div>}
 
-        <div className="metric-row metric-row-balance">
+        <div className="metric-row metric-row-primary">
           <StatCard
             label="余额"
             value={balance}
             className={`stat-card-primary ${isBalanceAlert ? 'stat-card-alert' : ''}`.trim()}
           />
+          <StatCard label="总消费" value={totalAmount} className="stat-card-primary" />
         </div>
-        <section className="metric-group" aria-label="消费统计">
-          <h2 className="metric-group-title">消费</h2>
-          <div className="metric-row metric-row-three">
-            <StatCard label="总消费" value={totalAmount} />
-            <StatCard label="本月消费" value={monthAmount} />
-            <StatCard label="今日消费" value={todayAmount} />
-          </div>
-        </section>
-        <section className="metric-group" aria-label="请求统计">
-          <h2 className="metric-group-title">请求数</h2>
-          <div className="metric-row metric-row-three">
-            <StatCard label="总请求数" value={requestCount} />
-            <StatCard label="本月请求数" value={monthRequests} />
-            <StatCard label="今日请求数" value={todayRequests} />
-          </div>
-        </section>
-        <section className="metric-group" aria-label="Token统计">
-          <h2 className="metric-group-title">Token</h2>
-          <div className="metric-row metric-row-two">
-            <StatCard label="本月Token" value={monthTokens} />
-            <StatCard label="今日Token" value={todayTokens} />
-          </div>
-        </section>
+        <div
+          className={`metric-row metric-row-secondary ${isMonth ? 'metric-row-secondary-month' : ''}`.trim()}
+          role="button"
+          tabIndex={0}
+          aria-label={`切换至${isMonth ? '今日' : '本月'}统计`}
+          onMouseDown={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+          }}
+          onClick={handleMetricPeriodToggle}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              handleMetricPeriodToggle(event);
+            }
+          }}
+        >
+          {secondaryMetrics.map(({ label, value }) => (
+            <StatCard key={label} label={label} value={value} />
+          ))}
+        </div>
 
         {metrics?.capped && <div className="cap-hint">今日 Token 已达分页上限</div>}
       </div>
