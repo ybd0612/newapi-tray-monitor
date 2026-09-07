@@ -9,7 +9,7 @@ import { emit, listen } from '@tauri-apps/api/event';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
 
 const CONFIG_KEY = 'newapi-tray-monitor-config';
-const CURRENT_PANEL_SIZE = { width: 240, height: 112 };
+const CURRENT_PANEL_SIZE = { width: 240, height: 136 };
 const appWindow = getCurrentWindow();
 
 function loadConfig() {
