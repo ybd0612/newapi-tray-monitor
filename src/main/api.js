@@ -17,9 +17,10 @@ export async function fetchPeriodData(baseUrl, token, startTimestamp, endTimesta
   }
   const parts = await Promise.all(ranges.map(([start, end]) => fetchPeriodChunk(baseUrl, token, start, end, userId, defaultTime)));
   return parts.reduce((total, part) => ({
+    amount: total.amount + part.amount,
     tokens: total.tokens + part.tokens,
     requests: total.requests + part.requests,
-  }), { tokens: 0, requests: 0 });
+  }), { amount: 0, tokens: 0, requests: 0 });
 }
 
 async function fetchPeriodChunk(baseUrl, token, startTimestamp, endTimestamp, userId, defaultTime = 'day') {
@@ -34,6 +35,7 @@ async function fetchPeriodChunk(baseUrl, token, startTimestamp, endTimestamp, us
   }
   const rows = Array.isArray(json.data) ? json.data : Array.isArray(json.data?.items) ? json.data.items : [];
   return {
+    amount: rows.reduce((sum, row) => sum + (Number(row?.quota) || 0), 0),
     tokens: rows.reduce((sum, row) => sum + (Number(row?.token_used) || 0), 0),
     requests: rows.reduce((sum, row) => sum + (Number(row?.count) || 0), 0),
   };

@@ -157,8 +157,10 @@ export default function App() {
 
   const balance = metrics ? formatMoney(metrics.balance) : '--';
   const totalAmount = metrics ? formatConsumption(metrics.usedAmount) : '--';
+  const monthAmount = metrics ? formatConsumption(metrics.monthAmount) : '--';
   const todayAmount = metrics ? formatConsumption(metrics.todayAmount) : '--';
   const requestCount = metrics ? formatInt(metrics.requestCount) : '--';
+  const monthRequests = metrics ? formatInt(metrics.monthRequests) : '--';
   const todayRequests = metrics ? formatInt(metrics.todayRequests) : '--';
   const monthTokens = metrics ? formatCompact(metrics.monthTokens) : '--';
   const todayTokens = metrics ? formatCompact(metrics.todayTokens) : '--';
@@ -182,18 +184,32 @@ export default function App() {
           <StatCard
             label="余额"
             value={balance}
-            className={isBalanceAlert ? 'stat-card-alert' : ''}
+            className={`stat-card-primary ${isBalanceAlert ? 'stat-card-alert' : ''}`.trim()}
           />
-          <StatCard label="总消费 / 今日消费" value={`${totalAmount} / ${todayAmount}`} />
         </div>
-        <div className="metric-row">
-          <StatCard label="本月请求量" value={requestCount} />
-          <StatCard label="今日请求量" value={todayRequests} />
-        </div>
-        <div className="metric-row">
-          <StatCard label="本月Token" value={monthTokens} />
-          <StatCard label="今日Token" value={todayTokens} />
-        </div>
+        <section className="metric-group" aria-label="消费统计">
+          <h2 className="metric-group-title">消费</h2>
+          <div className="metric-row metric-row-three">
+            <StatCard label="总消费" value={totalAmount} />
+            <StatCard label="本月消费" value={monthAmount} />
+            <StatCard label="今日消费" value={todayAmount} />
+          </div>
+        </section>
+        <section className="metric-group" aria-label="请求统计">
+          <h2 className="metric-group-title">请求数</h2>
+          <div className="metric-row metric-row-three">
+            <StatCard label="总请求数" value={requestCount} />
+            <StatCard label="本月请求数" value={monthRequests} />
+            <StatCard label="今日请求数" value={todayRequests} />
+          </div>
+        </section>
+        <section className="metric-group" aria-label="Token统计">
+          <h2 className="metric-group-title">Token</h2>
+          <div className="metric-row metric-row-two">
+            <StatCard label="本月Token" value={monthTokens} />
+            <StatCard label="今日Token" value={todayTokens} />
+          </div>
+        </section>
 
         {metrics?.capped && <div className="cap-hint">今日 Token 已达分页上限</div>}
       </div>

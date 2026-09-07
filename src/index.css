@@ -79,14 +79,39 @@ body::-webkit-scrollbar,
 
 .metric-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
   gap: 8px;
   padding: 5px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.metric-row:last-of-type {
+.metric-row-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metric-row-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.metric-row-balance {
+  grid-template-columns: minmax(0, 1fr);
+  padding-top: 4px;
+  padding-bottom: 10px;
+}
+
+.metric-group {
+  padding: 6px 0 2px;
+}
+
+.metric-group-title {
+  margin: 0 0 4px;
+  font-size: 10px;
+  font-weight: 600;
+  opacity: 0.48;
+  letter-spacing: 0.04em;
+}
+
+.metric-group:last-of-type .metric-row {
   border-bottom: 0;
 }
 
@@ -101,6 +126,15 @@ body::-webkit-scrollbar,
   font-size: 10px;
   opacity: 0.65;
   white-space: nowrap;
+}
+
+.stat-card-primary .stat-label {
+  font-size: 11px;
+  opacity: 0.72;
+}
+
+.stat-card-primary .stat-value {
+  font-size: 20px;
 }
 
 .stat-value {
