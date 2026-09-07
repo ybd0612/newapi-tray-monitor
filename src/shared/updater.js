@@ -12,7 +12,10 @@ let readyUpdate = null;
 export async function checkForAppUpdate({ onReady } = {}) {
   try {
     const update = await check();
-    if (!update?.available) return false;
+    if (!update?.available) {
+      await emit('update-none');
+      return false;
+    }
 
     await update.download();
     readyUpdate = update;

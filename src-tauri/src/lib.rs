@@ -41,24 +41,28 @@ pub fn run() {
             if std::env::args().any(|arg| arg == "--autostart") {
                 show_window(app.handle(), "main");
             }
-            let show = MenuItemBuilder::with_id("show", "显示面板").build(app)?;
             let settings = MenuItemBuilder::with_id("settings", "设置").build(app)?;
-            let hide = MenuItemBuilder::with_id("hide", "隐藏面板").build(app)?;
             // This item is enabled only after the signed package has downloaded.
             // Clicking it is the explicit user confirmation to install/relaunch.
-            let update = MenuItemBuilder::with_id("update-install", "更新已就绪（点击安装）")
+            let update = MenuItemBuilder::with_id("update-install", "暂无更新")
                 .enabled(false)
                 .build(app)?;
             let quit = PredefinedMenuItem::quit(app, Some("退出"))?;
             let separator = PredefinedMenuItem::separator(app)?;
             let menu = MenuBuilder::new(app)
-                .items(&[&show, &settings, &hide, &separator, &update, &quit])
+                .items(&[&settings, &separator, &update, &quit])
                 .build()?;
 
             let update_item = update.clone();
             app.listen("update-ready", move |_event| {
                 let _ = update_item.set_enabled(true);
-                let _ = update_item.set_text("更新已就绪（点击安装）");
+                let _ = update_item.set_text("更新");
+            });
+
+            let update_item = update.clone();
+            app.listen("update-none", move |_event| {
+                let _ = update_item.set_enabled(false);
+                let _ = update_item.set_text("暂无更新");
             });
 
             let tray_icon = app.default_window_icon().cloned();
@@ -74,16 +78,16 @@ pub fn run() {
                         ..
                     } = event
                     {
-                        show_window(tray.app_handle(), "main");
+                        if let Some(window) = tray.app_handle().get_webview_window("main") {
+                            if window.is_visible().unwrap_or(false) {
+                                let _ = window.hide();
+                            } else {
+                                show_window(tray.app_handle(), "main");
+                            }
+                        }
                     }
                 })
                 .on_menu_event(|app, event| match event.id.as_ref() {
-                    "show" => show_window(app, "main"),
-                    "hide" => {
-                        if let Some(window) = app.get_webview_window("main") {
-                            let _ = window.hide();
-                        }
-                    }
                     "settings" => open_settings(app),
                     "update-install" => {
                         let _ = app.emit("update-install-requested", ());

@@ -9,6 +9,7 @@ import {
   Switch,
   Snackbar,
   Alert,
+  Link,
 } from '@mui/material';
 import { DEFAULT_CONFIG } from '../shared/constants.js';
 import { tauriApi } from '../shared/tauriApi.js';
@@ -168,6 +169,20 @@ export default function App() {
             {testResult.message}
           </Alert>
         )}
+
+        <Box sx={{ pt: 1, borderTop: '1px solid', borderColor: 'divider' }}>
+          <Typography variant="body2" color="text.secondary">
+            项目仓库：{' '}
+            <Link
+              href="https://github.com/ybd0612/newapi-tray-monitor"
+              target="_blank"
+              rel="noopener noreferrer"
+              underline="hover"
+            >
+              GitHub 仓库
+            </Link>
+          </Typography>
+        </Box>
       </Stack>
 
       <Snackbar
