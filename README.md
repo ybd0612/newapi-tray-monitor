@@ -59,14 +59,14 @@
 ```bash
 npm install
 npm run tauri:dev       # 启动 Tauri 开发模式，固定使用 Vite 端口 52317
-npm run tauri:build     # 构建 Windows 安装包，输出到 src-tauri/target/release/bundle/
+npm run tauri:build     # 构建 Windows 安装包，产物收集到 build/installer/
 ```
 
 仅构建前端资源时：
 
 ```bash
-npm run build           # 生成 dist/，不启动桌面应用
-npm run build:tauri     # 生成 Tauri 使用的前端资源，不清理已有 dist/
+npm run build           # 生成 build/frontend/，不启动桌面应用
+npm run build:tauri     # 生成 Tauri 使用的前端资源，不清理已有 build/frontend/
 ```
 
 > Vite 开发端口固定为 `52317`，端口被占用时会直接报错，不会自动换端口。修改前端代码后，优先使用 `npm run tauri:dev` 验证桌面窗口行为。
@@ -98,11 +98,17 @@ npm run build:tauri     # 生成 Tauri 使用的前端资源，不清理已有 d
 npm run tauri:build
 ```
 
-构建产物位于：
+Tauri 原始产物位于 `src-tauri/target/release/bundle/nsis/`；`tauri:build` 会在打包完成后自动把安装包和 `.sig` 签名文件复制到 `build/installer/`。
+
+所有构建产物统一放在唯一目录 `build/` 下：
 
 ```text
-src-tauri/target/release/bundle/nsis/
+build/
+├── frontend/     # Vite 前端产物（index.html / settings.html / assets）
+└── installer/    # NSIS 安装包与更新签名文件
 ```
+
+`build/` 已加入 `.gitignore`，不入版本库。
 
 当前项目已发布 `v1.0.5`，发布记录、签名安装包和更新资产信息见 [`overview.md`](./overview.md)。后续发布前需要同步更新 `package.json`、`src-tauri/Cargo.toml`、`src-tauri/tauri.conf.json` 中的版本号，并生成新的安装包与签名文件。
 

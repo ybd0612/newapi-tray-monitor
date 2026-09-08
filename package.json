@@ -10,7 +10,8 @@
     "build:tauri:dev": "vite build --emptyOutDir false",
     "tauri:dev": "tauri dev",
     "tauri": "tauri",
-    "tauri:build": "tauri build"
+    "tauri:build": "tauri build && npm run collect",
+    "collect": "node scripts/copy-installer.mjs"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",

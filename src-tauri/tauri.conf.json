@@ -6,7 +6,7 @@
   "build": {
     "beforeDevCommand": "npm run build:tauri:dev",
     "beforeBuildCommand": "npm run build:tauri",
-    "frontendDist": "../dist"
+    "frontendDist": "../build/frontend"
   },
   "app": {
     "windows": [

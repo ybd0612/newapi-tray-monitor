@@ -19,7 +19,8 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist',
+    // 前端产物统一输出到 build/frontend（与安装包 build/installer 同属 build/ 单一构建目录）
+    outDir: 'build/frontend',
     emptyOutDir: true,
     rollupOptions: {
       input: {
