@@ -1,32 +1,32 @@
 # NewAPI Tray Monitor 发布概览
 
-## v1.0.5 本轮变更
-- 托盘左键单击改为显示/隐藏主窗口切换；右键菜单移除“显示面板”和“隐藏面板”。
-- 更新菜单无更新时显示“暂无更新”，下载完成后显示“更新”。
-- 设置页增加可点击的 GitHub 项目仓库链接。
-- 通过 `tauri-plugin-opener` 调用系统默认浏览器打开仓库链接，修复 WebView 内普通链接不跳转的问题。
+## 当前状态（2026-09-09）
+- 当前源码版本：`1.0.5`
+- 当前 `main` 已推送至提交：`763ac3f`（文档同步提交）
+- 最新正式 Release：`v1.0.5`
+- Release 地址：https://github.com/ybd0612/newapi-tray-monitor/releases/tag/v1.0.5
+- GitHub Actions 发布任务：`34126360673`，已成功完成签名构建。
+- 发布资产：`NewAPI._1.0.5_x64-setup.exe` 与 `NewAPI._1.0.5_x64-setup.exe.sig`
 
-## v1.0.5 构建结果
-- 版本：`1.0.5`
-- 安装包：`src-tauri/target/release/bundle/nsis/NewAPI监控_1.0.5_x64-setup.exe`（本地构建产物现统一收集到 `build/installer/`）
-- 目标：Windows x64 NSIS
-- 本地构建：因本机未配置 `TAURI_SIGNING_PRIVATE_KEY`，只生成未签名 exe；GitHub Actions 已使用仓库 Secret 成功生成正式签名资产。
-- README 已同步当前托盘交互、自动更新、仓库链接和 v1.0.5 发布口径。
-- 验证：metrics 18/18、API mock 6/6、Vite 构建、Rust/Tauri `cargo check` 均通过。
+## 当前功能口径
+- 托盘左键单击切换主窗口显示/隐藏；右键菜单提供设置、更新和退出。
+- 无更新时更新菜单显示“暂无更新”并禁用；签名更新下载完成后显示“更新”并可点击安装。
+- 设置页提供 GitHub 项目仓库链接，使用 `tauri-plugin-opener` 调用系统默认浏览器打开。
+- 设置页支持中转站 URL、访问令牌、用户 ID、开机自启、刷新频率和余额提示阈值。
+- 余额严格低于阈值时显示红色，等于或高于阈值保持原样。
+- 主窗口固定尺寸，支持拖动和透明度调整。
 
-## v1.0.5 GitHub Release
-- 地址：https://github.com/ybd0612/newapi-tray-monitor/releases/tag/v1.0.5
-- 安装包：`NewAPI._1.0.5_x64-setup.exe`
-- 签名文件：`NewAPI._1.0.5_x64-setup.exe.sig`
-- GitHub Actions 任务：`34126360673`，已成功完成。
-- Release 状态：正式发布，非草稿、非预发布。
+## 本轮文档审查与同步
+- `README.md` 已修正托盘交互、固定窗口尺寸、自动更新、opener 插件、仓库链接、v1.0.5 发布口径和使用步骤。
+- `overview.md` 已收敛为当前状态与历史发布记录，避免把 v1.0.4 历史信息误当作当前版本。
+- 项目当日日志：`.workbuddy/memory/2026-09-07.md`。
 
-## v1.0.4 历史发布
-- GitHub Release：https://github.com/ybd0612/newapi-tray-monitor/releases/tag/v1.0.4
-- 安装包：`NewAPI._1.0.4_x64-setup.exe`
-- 签名文件：`NewAPI._1.0.4_x64-setup.exe.sig`
-- GitHub Actions 任务 `34101130988` 已成功完成。
+## 历史发布
+- v1.0.4：已生成 Windows x64 NSIS 安装包与签名文件。
+- v1.0.5：已生成 Windows x64 NSIS 安装包与签名文件，当前为最新正式版本。
 
 ## 项目信息
-- 远程仓库：`git@github.com:ybd0612/newapi-tray-monitor.git`
-- HTTPS：https://github.com/ybd0612/newapi-tray-monitor
+- SSH 仓库：`git@github.com:ybd0612/newapi-tray-monitor.git`
+- HTTPS 仓库：https://github.com/ybd0612/newapi-tray-monitor
+- 本地构建产物：`src-tauri/target/release/bundle/nsis/`；统一收集目录为 `build/installer/`
+- 发布前必须同步：`package.json`、`package-lock.json`、`src-tauri/tauri.conf.json`、`src-tauri/Cargo.toml`、`src-tauri/Cargo.lock`、`README.md`。
