@@ -25,7 +25,7 @@ function formatConsumption(v) {
   return num.toFixed(2);
 }
 
-// 大数量使用中文单位，统一保留 4 位小数
+// 大数量使用中文单位，保留 2 位小数（4 位会使长数值溢出面板宽度）
 function formatCompact(v) {
   const num = Number(v);
   if (!Number.isFinite(num)) return '--';
@@ -35,7 +35,7 @@ function formatCompact(v) {
     [10000, '万'],
   ];
   const unit = units.find(([threshold]) => abs >= threshold);
-  return unit ? `${(num / unit[0]).toFixed(4)}${unit[1]}` : formatInt(num);
+  return unit ? `${(num / unit[0]).toFixed(2)}${unit[1]}` : formatInt(num);
 }
 
 export default function App() {
