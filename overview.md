@@ -2,8 +2,10 @@
 
 ## 当前状态（2026-09-10）
 - 当前源码版本：`1.0.6`
-- 最新正式 Release：`v1.0.6`（tag 推送后由 GitHub Actions 自动构建发布）
+- 最新正式 Release：`v1.0.6`（已发布）
 - Release 地址：https://github.com/ybd0612/newapi-tray-monitor/releases/tag/v1.0.6
+- GitHub Actions 发布任务：`34446676477`，签名构建成功（耗时 8m2s）
+- 发布资产：`NewAPI监控_1.0.6_x64-setup.exe`（4,042,476 字节）与 `.sig` 签名文件
 
 ## v1.0.6 变更内容
 - 修复主窗体多屏/显示器电源切换后异常变宽：固定尺寸恢复改用逻辑像素（`LogicalSize`），移除窗口尺寸持久化与 `onResized` 状态回写，恢复位置时校验显示器工作区、越界自动回退到可用显示器。
