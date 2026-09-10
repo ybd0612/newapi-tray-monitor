@@ -110,7 +110,7 @@ build/
 
 `build/` 已加入 `.gitignore`，不入版本库。
 
-当前项目已发布 `v1.0.6`，发布记录、签名安装包和更新资产信息见 [`overview.md`](./overview.md)。后续发布前需要同步更新 `package.json`、`src-tauri/Cargo.toml`、`src-tauri/tauri.conf.json` 中的版本号，并生成新的安装包与签名文件。
+当前项目已发布 `v1.0.7`，发布记录、签名安装包和更新资产信息见 [`overview.md`](./overview.md)。后续发布前需要同步更新 `package.json`、`src-tauri/Cargo.toml`、`src-tauri/tauri.conf.json` 中的版本号，并生成新的安装包与签名文件。
 
 ## 依赖与镜像说明
 
