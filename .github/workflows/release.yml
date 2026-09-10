@@ -30,3 +30,10 @@ jobs:
           releaseBody: '由 GitHub Actions 自动构建的 Windows NSIS 安装包。'
           releaseDraft: false
           prerelease: false
+      # tauri-action 在中文文件名（NewAPI监控_*.exe）下匹配 .sig 失败，会跳过
+      # latest.json 上传（构建日志见 "Signature not found for the updater JSON"）。
+      # 该步骤通过 GitHub API 补齐，保证旧版本客户端可检查更新。
+      - name: Generate and upload updater latest.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/upload-updater-json.mjs
