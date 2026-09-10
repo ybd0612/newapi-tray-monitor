@@ -96,7 +96,6 @@ export default function App() {
     // explicit confirmation item only when an update is ready to install.
     void checkForAppUpdate();
     let unlistenMoved = null;
-    let unlistenResized = null;
     const api = window.api;
     const onContextMenu = (event) => event.preventDefault();
     window.addEventListener('contextmenu', onContextMenu, { capture: true });
@@ -126,9 +125,8 @@ export default function App() {
     };
     window.addEventListener('wheel', onWheel, { passive: false, capture: true });
     if (!api) {
-      // 先注册事件，再恢复状态，避免首次打开时错过移动/缩放事件。
+      // 先注册移动事件，再恢复状态，避免首次打开时错过位置变化。
       tauriApi.onMoved(() => { void tauriApi.saveWindowState(); }).then((unlisten) => { unlistenMoved = unlisten; });
-      tauriApi.onResized(() => { void tauriApi.saveWindowState(); }).then((unlisten) => { unlistenResized = unlisten; });
       tauriApi.getPanelPosition().then((state) => {
         const opacity = Math.min(1, Math.max(0.35, Number(state?.opacity) || 1));
         panelOpacityRef.current = opacity;
@@ -156,7 +154,6 @@ export default function App() {
       window.removeEventListener('wheel', onWheel, { capture: true });
       window.removeEventListener('contextmenu', onContextMenu, { capture: true });
       unlistenMoved?.();
-      unlistenResized?.();
       tauriApi.saveWindowState();
       dispose?.();
       unlistenUpdateInstall?.();

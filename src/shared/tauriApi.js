@@ -4,7 +4,8 @@ import { parseUser, parseTodayStat } from '../main/metrics.js';
 
 configureFetch(tauriFetch);
 import { DEFAULT_CONFIG, MIN_REFRESH_INTERVAL } from './constants.js';
-import { getCurrentWindow, PhysicalPosition, PhysicalSize } from '@tauri-apps/api/window';
+import { availableMonitors, getCurrentWindow, PhysicalPosition } from '@tauri-apps/api/window';
+import { LogicalSize } from '@tauri-apps/api/dpi';
 import { emit, listen } from '@tauri-apps/api/event';
 import { enable, disable, isEnabled } from '@tauri-apps/plugin-autostart';
 
@@ -44,6 +45,41 @@ function getMonthRange() {
     startTimestamp: Math.floor(start.getTime() / 1000),
     endTimestamp: Math.floor(now.getTime() / 1000),
   };
+}
+
+async function restorePanelPosition(savedPosition) {
+  const monitors = await availableMonitors();
+  if (!monitors.length) return savedPosition || null;
+
+  const candidate = savedPosition && {
+    x: Number(savedPosition.x),
+    y: Number(savedPosition.y),
+  };
+  const isFinitePosition = candidate
+    && Number.isFinite(candidate.x)
+    && Number.isFinite(candidate.y);
+  const monitor = monitors.find(({ workArea }) => {
+    const right = workArea.position.x + workArea.size.width;
+    const bottom = workArea.position.y + workArea.size.height;
+    return isFinitePosition
+      && candidate.x >= workArea.position.x
+      && candidate.x < right
+      && candidate.y >= workArea.position.y
+      && candidate.y < bottom;
+  }) || monitors[0];
+  const scaleFactor = monitor.scaleFactor;
+  const windowWidth = CURRENT_PANEL_SIZE.width * scaleFactor;
+  const windowHeight = CURRENT_PANEL_SIZE.height * scaleFactor;
+  const { position, size } = monitor.workArea;
+  const x = isFinitePosition
+    ? Math.min(Math.max(candidate.x, position.x), position.x + size.width - windowWidth)
+    : position.x;
+  const y = isFinitePosition
+    ? Math.min(Math.max(candidate.y, position.y), position.y + size.height - windowHeight)
+    : position.y;
+  const positionToRestore = { x: Math.round(x), y: Math.round(y) };
+  await appWindow.setPosition(new PhysicalPosition(positionToRestore.x, positionToRestore.y));
+  return positionToRestore;
 }
 
 async function collectMetrics(cfg) {
@@ -115,19 +151,16 @@ export const tauriApi = {
   },
   getPanelPosition: async () => {
     const config = loadConfig();
-    if (config.panelPosition) {
-      await appWindow.setPosition(new PhysicalPosition(config.panelPosition.x, config.panelPosition.y));
-    }
-    // Window resizing is disabled, so always normalize persisted dimensions to
-    // the compact fixed size instead of restoring stale user/legacy geometry.
+    const position = await restorePanelPosition(config.panelPosition);
+    // The window is fixed-size. Keep the size in logical pixels so Windows/Tauri
+    // recalculates its physical size when the window moves between DPI scales.
     const panelSize = { ...CURRENT_PANEL_SIZE };
-    if (!config.panelSize
-      || Number(config.panelSize.width) !== panelSize.width
-      || Number(config.panelSize.height) !== panelSize.height) {
-      saveConfig({ ...config, panelSize });
+    await appWindow.setSize(new LogicalSize(panelSize.width, panelSize.height));
+    if (config.panelSize) {
+      // Drop legacy physical/outer-size state; it is not safe to restore across monitors.
+      saveConfig({ ...config, panelSize: null, panelPosition: position });
     }
-    await appWindow.setSize(new PhysicalSize(panelSize.width, panelSize.height));
-    return { position: config.panelPosition, size: panelSize, opacity: config.panelOpacity };
+    return { position, size: panelSize, opacity: config.panelOpacity };
   },
   startDragging: async () => {
     try {
@@ -141,18 +174,12 @@ export const tauriApi = {
     saveConfig({ ...loadConfig(), panelPosition: position });
     handler?.(position);
   }),
-  onResized: (handler) => appWindow.onResized(async ({ payload }) => {
-    const size = { width: payload.width, height: payload.height };
-    saveConfig({ ...loadConfig(), panelSize: size });
-    handler?.(size);
-  }),
   saveWindowState: async () => {
-    const [position, size] = await Promise.all([appWindow.outerPosition(), appWindow.outerSize()]);
+    const position = await appWindow.outerPosition();
     const state = {
       panelPosition: { x: position.x, y: position.y },
-      panelSize: { width: size.width, height: size.height },
     };
-    saveConfig({ ...loadConfig(), ...state });
+    saveConfig({ ...loadConfig(), ...state, panelSize: null });
     return state;
   },
   testConnection: async ({ baseUrl, token, userId }) => {
