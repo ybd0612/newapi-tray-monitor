@@ -4,6 +4,8 @@
 - 当前源码版本：`1.0.7`
 - 最新正式 Release：`v1.0.7`（tag 推送后由 GitHub Actions 自动构建发布）
 - Release 地址：https://github.com/ybd0612/newapi-tray-monitor/releases/tag/v1.0.7
+- GitHub Actions 发布任务：`34454602627`，签名构建成功
+- 发布资产：`latest.json` + `NewAPI监控_1.0.7_x64-setup.exe`（4,040,032 字节）+ `.sig` 签名，更新端点已验证返回 1.0.7
 
 ## v1.0.7 变更内容
 - 设置页：用户 ID 增加来源提示（可在中转站网页「个人资料」页查看）。
