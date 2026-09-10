@@ -48,6 +48,7 @@ export default function App() {
     DEFAULT_CONFIG.balanceAlertThreshold,
   );
   const panelOpacityRef = useRef(1);
+  const secondaryDragRef = useRef({ active: false, dragging: false, startX: 0, startY: 0 });
 
   useEffect(() => {
     panelOpacityRef.current = panelOpacity;
@@ -180,10 +181,40 @@ export default function App() {
     }
   };
 
-  const handleMetricPeriodToggle = (event) => {
+  const toggleMetricPeriod = () => {
+    setMetricPeriod((period) => (period === 'today' ? 'month' : 'today'));
+  };
+
+  // 下方指标区：按下后移动超过阈值 -> 拖动窗口；原地点击 -> 切换今日/本月。
+  // 不能直接用 startDragging + onClick：原生拖拽循环会吞掉后续事件，
+  // 是否发生拖拽无法从 click 判断，因此自己记录位移再分支。
+  const handleSecondaryMouseDown = (event) => {
+    if (event.button !== 0) return;
     event.preventDefault();
     event.stopPropagation();
-    setMetricPeriod((period) => (period === 'today' ? 'month' : 'today'));
+    const state = secondaryDragRef.current;
+    state.active = true;
+    state.dragging = false;
+    state.startX = event.clientX;
+    state.startY = event.clientY;
+    const onMove = (moveEvent) => {
+      if (!state.active || state.dragging) return;
+      const dx = moveEvent.clientX - state.startX;
+      const dy = moveEvent.clientY - state.startY;
+      if (Math.hypot(dx, dy) > 4) {
+        state.dragging = true;
+        void tauriApi.startDragging();
+      }
+    };
+    const onUp = () => {
+      window.removeEventListener('mousemove', onMove, true);
+      window.removeEventListener('mouseup', onUp, true);
+      if (state.active && !state.dragging) toggleMetricPeriod();
+      state.active = false;
+      state.dragging = false;
+    };
+    window.addEventListener('mousemove', onMove, true);
+    window.addEventListener('mouseup', onUp, true);
   };
 
   const isMonth = metricPeriod === 'month';
@@ -216,14 +247,11 @@ export default function App() {
           role="button"
           tabIndex={0}
           aria-label={`切换至${isMonth ? '今日' : '本月'}统计`}
-          onMouseDown={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-          }}
-          onClick={handleMetricPeriodToggle}
+          onMouseDown={handleSecondaryMouseDown}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === ' ') {
-              handleMetricPeriodToggle(event);
+              event.preventDefault();
+              toggleMetricPeriod();
             }
           }}
         >

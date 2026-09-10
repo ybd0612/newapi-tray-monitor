@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { DEFAULT_CONFIG } from '../shared/constants.js';
 import { openUrl } from '@tauri-apps/plugin-opener';
+import { getVersion } from '@tauri-apps/api/app';
 import { tauriApi } from '../shared/tauriApi.js';
 
 export default function App() {
@@ -21,6 +22,21 @@ export default function App() {
   const [errorMsg, setErrorMsg] = useState('');
   const [testResult, setTestResult] = useState(null); // 测试连接结果 { ok, message }
   const [autoStart, setAutoStart] = useState(false);
+  const [appVersion, setAppVersion] = useState('');
+
+  // 设置页禁用右键菜单（WebView2 默认菜单对设置项无意义）
+  useEffect(() => {
+    const onContextMenu = (event) => event.preventDefault();
+    window.addEventListener('contextmenu', onContextMenu, { capture: true });
+    return () => window.removeEventListener('contextmenu', onContextMenu, { capture: true });
+  }, []);
+
+  // 读取当前应用版本号（来自 tauri.conf.json）
+  useEffect(() => {
+    getVersion()
+      .then((version) => setAppVersion(version))
+      .catch(() => {});
+  }, []);
 
   // 启动时从主进程拉取已保存配置
   useEffect(() => {
@@ -140,7 +156,7 @@ export default function App() {
           placeholder="数字，factory.pub 等部署必需"
           value={form.userId}
           onChange={update('userId')}
-          helperText="部分部署要求带数字用户ID头；留空兼容普通 NewAPI"
+          helperText="可在中转站网页「个人资料」页查看；部分部署要求填写，留空兼容普通 NewAPI"
           fullWidth
         />
         <FormControlLabel
@@ -180,16 +196,26 @@ export default function App() {
           </Alert>
         )}
 
-        <Box sx={{ pt: 1, borderTop: '1px solid', borderColor: 'divider' }}>
+        <Box
+          sx={{
+            pt: 1,
+            borderTop: '1px solid',
+            borderColor: 'divider',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <Link
+            href="https://github.com/ybd0612/newapi-tray-monitor"
+            onClick={handleOpenRepository}
+            underline="hover"
+            variant="body2"
+          >
+            项目地址
+          </Link>
           <Typography variant="body2" color="text.secondary">
-            项目仓库：{' '}
-            <Link
-              href="https://github.com/ybd0612/newapi-tray-monitor"
-              onClick={handleOpenRepository}
-              underline="hover"
-            >
-              GitHub 仓库
-            </Link>
+            当前版本：v{appVersion || '-'}
           </Typography>
         </Box>
       </Stack>
