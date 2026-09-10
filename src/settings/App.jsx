@@ -190,12 +190,6 @@ export default function App() {
           </Button>
         </Stack>
 
-        {testResult && (
-          <Alert severity={testResult.ok ? 'success' : 'error'}>
-            {testResult.message}
-          </Alert>
-        )}
-
         <Box
           sx={{
             pt: 1,
@@ -220,17 +214,22 @@ export default function App() {
         </Box>
       </Stack>
 
+      {/* 统一 toast：保存成功 / 测试连接结果 / 错误提示，不占布局空间 */}
       <Snackbar
-        open={saved || !!errorMsg}
+        open={saved || !!errorMsg || !!testResult}
         autoHideDuration={2500}
         onClose={() => {
           setSaved(false);
           setErrorMsg('');
+          setTestResult(null);
         }}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       >
-        <Alert severity={errorMsg ? 'error' : 'success'} sx={{ width: '100%' }}>
-          {errorMsg ? errorMsg : '已保存'}
+        <Alert
+          severity={errorMsg ? 'error' : testResult ? (testResult.ok ? 'success' : 'error') : 'success'}
+          sx={{ width: '100%' }}
+        >
+          {errorMsg || (testResult ? testResult.message : '已保存')}
         </Alert>
       </Snackbar>
     </Box>
